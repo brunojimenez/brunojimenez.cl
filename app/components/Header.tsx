@@ -5,6 +5,14 @@ import { useState } from "react";
 import Button from "./Button";
 import Container from "./Container";
 
+const navLinks = [
+  { href: "/", label: "Inicio" },
+  { href: "/cv", label: "Trayectoria" },
+  { href: "/proyectos", label: "Proyectos" },
+  { href: "/como-trabajo", label: "Cómo trabajo" },
+  { href: "/contacto", label: "Contacto" },
+];
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -20,19 +28,16 @@ export default function Header() {
           </Link>
 
           {/* Desktop navigation */}
-          <div className="hidden items-center gap-8 sm:flex">
-            <Link
-              href="/"
-              className="text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
-            >
-              Inicio
-            </Link>
-            <Link
-              href="/contacto"
-              className="text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
-            >
-              Contacto
-            </Link>
+          <div className="hidden items-center gap-6 lg:flex">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+              >
+                {link.label}
+              </Link>
+            ))}
             <Button href="/contacto" variant="primary" className="px-4 py-2">
               Hablemos
             </Button>
@@ -41,7 +46,7 @@ export default function Header() {
           {/* Mobile menu button */}
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-[var(--radius-md)] p-2 text-[var(--text-secondary)] hover:bg-[var(--surface)] hover:text-[var(--text-primary)] sm:hidden"
+            className="inline-flex items-center justify-center rounded-[var(--radius-md)] p-2 text-[var(--text-secondary)] hover:bg-[var(--surface)] hover:text-[var(--text-primary)] lg:hidden"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
             aria-label="Menú principal"
@@ -73,23 +78,19 @@ export default function Header() {
 
       {/* Mobile navigation */}
       {menuOpen && (
-        <div className="border-t border-[var(--border)] bg-[var(--background)] sm:hidden">
+        <div className="border-t border-[var(--border)] bg-[var(--background)] lg:hidden">
           <Container>
             <div className="flex flex-col gap-4 py-4">
-              <Link
-                href="/"
-                className="text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
-                onClick={() => setMenuOpen(false)}
-              >
-                Inicio
-              </Link>
-              <Link
-                href="/contacto"
-                className="text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
-                onClick={() => setMenuOpen(false)}
-              >
-                Contacto
-              </Link>
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
               <Button
                 href="/contacto"
                 variant="primary"
