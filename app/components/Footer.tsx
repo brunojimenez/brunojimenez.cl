@@ -13,6 +13,13 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-6">
             <a
+              href="mailto:hola@brunojimenez.cl"
+              className="text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+              aria-label="Correo de Bruno Jiménez"
+            >
+              hola@brunojimenez.cl
+            </a>
+            <a
               href="https://www.linkedin.com/in/brunojimenezchavez"
               target="_blank"
               rel="noopener noreferrer"
@@ -21,12 +28,6 @@ export default function Footer() {
             >
               LinkedIn
             </a>
-            <Link
-              href="/contacto"
-              className="text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
-            >
-              Contacto
-            </Link>
             <Link
               href="/privacidad"
               className="text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"

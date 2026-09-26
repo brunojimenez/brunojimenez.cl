@@ -38,8 +38,7 @@ export default function Privacidad() {
             </h2>
             <p className="leading-relaxed">
               Este sitio no instala cookies propias ni utiliza herramientas de
-              analítica que rastreen a personas individuales. La única forma de
-              contacto disponible es a través de enlaces externos como LinkedIn.
+              analítica que rastreen a personas individuales.
             </p>
 
             <h2 className="pt-4 text-lg font-semibold text-[var(--text-primary)]">
@@ -66,7 +65,14 @@ export default function Privacidad() {
             <p className="leading-relaxed">
               Como este sitio no recopila datos personales, no hay información
               que solicitar, modificar o eliminar. Si tienes alguna consulta
-              sobre privacidad, puedes contactarme a través de{" "}
+              sobre privacidad, puedes contactarme a{" "}
+              <a
+                href="mailto:hola@brunojimenez.cl"
+                className="text-[var(--text-primary)] underline underline-offset-2 transition-colors hover:text-[var(--accent-hover)]"
+              >
+                hola@brunojimenez.cl
+              </a>{" "}
+              o a través de{" "}
               <a
                 href="https://www.linkedin.com/in/brunojimenezchavez"
                 target="_blank"
