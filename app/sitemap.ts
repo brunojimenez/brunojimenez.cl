@@ -2,12 +2,20 @@ import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://brunojimenez.cl";
-  const pages = ["", "/contacto", "/privacidad"];
+  const pages = [
+    { path: "", priority: 1, changeFrequency: "monthly" as const },
+    { path: "/cv", priority: 0.8, changeFrequency: "yearly" as const },
+    { path: "/proyectos", priority: 0.8, changeFrequency: "yearly" as const },
+    { path: "/como-trabajo", priority: 0.7, changeFrequency: "yearly" as const },
+    { path: "/sobre-mi", priority: 0.7, changeFrequency: "yearly" as const },
+    { path: "/contacto", priority: 0.9, changeFrequency: "yearly" as const },
+    { path: "/privacidad", priority: 0.3, changeFrequency: "yearly" as const },
+  ];
 
-  return pages.map((p) => ({
-    url: base + p,
+  return pages.map((page) => ({
+    url: base + page.path,
     lastModified: new Date(),
-    changeFrequency: p === "" ? "monthly" : "yearly",
-    priority: p === "" ? 1 : 0.7,
+    changeFrequency: page.changeFrequency,
+    priority: page.priority,
   }));
 }
