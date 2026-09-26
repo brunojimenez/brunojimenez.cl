@@ -73,8 +73,8 @@ export default function CV() {
               Resumen
             </h2>
             <p className="mt-3 text-[var(--text-secondary)]">
-              Ingeniero de Ejecución en Informática (PUCV) con experiencia en
-              integración empresarial y modernización de plataformas.
+              Ingeniero de Ejecución en Informática (PUCV), Chile. Experiencia
+              en integración empresarial y modernización de plataformas.
               Actualmente desarrollo microservicios de integración sobre
               OpenShift con Spring Boot, MongoDB y Kafka. Antes trabajé en
               integración y modernización para banca, retail y sector público.
@@ -230,7 +230,7 @@ export default function CV() {
             <p className="mt-1 text-sm text-[var(--text-muted)]">
               Pontificia Universidad Católica de Valparaíso (PUCV)
             </p>
-            {/* TODO: Agregar año de titulación cuando se confirme */}
+            <p className="mt-1 text-sm text-[var(--text-muted)]">2005 – 2015</p>
           </Card>
 
           {/* TODO: Agregar certificaciones cuando se confirmen */}
