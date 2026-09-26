@@ -57,9 +57,11 @@ export default function SobreMi() {
             </p>
 
             <p className="leading-relaxed">
-              Desde entonces he trabajado en integración para banca, retail y
-              sector público. Hoy desarrollo microservicios sobre OpenShift con
-              Spring Boot, Kafka y MongoDB en un operador de telefonía móvil.
+              Desde entonces he trabajado en integración para banca (Transbank,
+              BCI), retail (Cencosud, Casa&Ideas) y sector público (MINVU,
+              JUNAEB). Hoy estoy en WOM, desarrollando microservicios de
+              integración para carrier billing: conectar los sistemas de cobro
+              del operador con plataformas como Spotify, Netflix y Boku.
             </p>
 
             <h2 className="pt-4 text-xl font-semibold text-[var(--text-primary)]">

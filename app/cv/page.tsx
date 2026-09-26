@@ -75,9 +75,10 @@ export default function CV() {
             <p className="mt-3 text-[var(--text-secondary)]">
               Ingeniero de Ejecución en Informática (PUCV), Chile. Experiencia
               en integración empresarial y modernización de plataformas.
-              Actualmente desarrollo microservicios de integración sobre
-              OpenShift con Spring Boot, MongoDB y Kafka. Antes trabajé en
-              integración y modernización para banca, retail y sector público.
+              Actualmente en WOM, desarrollando microservicios de integración
+              para carrier billing sobre OpenShift con Spring Boot, MongoDB y
+              Kafka. Antes trabajé en integración y modernización para
+              Transbank, BCI, Cencosud, MINVU y JUNAEB, entre otros.
             </p>
           </Card>
         </Container>
@@ -93,11 +94,11 @@ export default function CV() {
           <div className="mt-8 space-y-2">
             <ExperienciaItem
               periodo="2020 – Presente"
-              rol="Desarrollo de microservicios"
-              descripcion="Desarrollo de microservicios de integración sobre OpenShift con Spring Boot, MongoDB y Kafka en un operador de telefonía móvil."
+              rol="Desarrollo de microservicios — WOM"
+              descripcion="Desarrollo de microservicios de integración sobre OpenShift con Spring Boot, MongoDB y Kafka. Integración de sistemas de carrier billing y cobro con proveedores de contenido."
               logros={[
-                "Integración de sistemas de negocio con plataformas de terceros",
-                "Diseño e implementación de APIs y servicios de mensajería",
+                "Integración con plataformas de contenido: Spotify, Boku, Netflix, FOX",
+                "Desarrollo de APIs y servicios de mensajería para sistemas de cobro",
                 "Modernización de componentes legacy hacia arquitectura de microservicios",
               ]}
             />
@@ -107,9 +108,10 @@ export default function CV() {
               rol="Integración empresarial"
               descripcion="Proyectos de integración y modernización para banca, retail y sector público."
               logros={[
-                "Migración de plataformas Oracle WebLogic a Red Hat JBoss EAP",
-                "Integración de servicios SOAP con plataformas modernas",
-                "Implementación de soluciones SOA y BPM",
+                "Migración de plataformas Oracle WebLogic a Red Hat JBoss EAP para BCI",
+                "Portal MINVU Conecta: integración de servicios ciudadanos",
+                "Migración de portal JUNAEB a Liferay DXP",
+                "Integraciones para Transbank, Cencosud, Tarjeta Cruz Verde",
               ]}
             />
 
@@ -147,7 +149,6 @@ export default function CV() {
             />
           </div>
 
-          {/* TODO: Agregar experiencia detallada por empresa cuando se confirme el contenido */}
         </Container>
       </Section>
 

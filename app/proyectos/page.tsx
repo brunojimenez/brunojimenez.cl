@@ -88,7 +88,7 @@ export default function Proyectos() {
 
           <div className="mt-8 grid gap-6 sm:grid-cols-2">
             <ProyectoCard
-              titulo="Migración a Red Hat JBoss EAP"
+              titulo="Migración BCI a Red Hat JBoss EAP"
               sector="Banca"
               descripcion="Migración de aplicaciones críticas desde Oracle WebLogic a Red Hat JBoss EAP, incluyendo reconfiguración de datasources, seguridad y clustering."
               tecnologias={["JBoss EAP", "Oracle WebLogic", "Java EE"]}
@@ -96,20 +96,18 @@ export default function Proyectos() {
             />
 
             <ProyectoCard
-              titulo="Portal de servicios ciudadanos"
+              titulo="MINVU Conecta"
               sector="Sector público"
-              descripcion="Implementación de portal de servicios integrado con sistemas backend del ministerio, incluyendo SSO y formularios transaccionales."
+              descripcion="Portal de servicios ciudadanos integrado con sistemas backend del ministerio, incluyendo SSO y formularios transaccionales."
               tecnologias={["Liferay", "Java", "REST", "SOAP"]}
             />
 
             <ProyectoCard
-              titulo="Modernización de portal educacional"
+              titulo="Portal JUNAEB"
               sector="Sector público"
               descripcion="Migración de portal desde Liferay 6 a Liferay DXP, incluyendo actualización de portlets y migración de contenido."
               tecnologias={["Liferay DXP", "Liferay 6", "Java"]}
             />
-
-            {/* TODO: Agregar más proyectos cuando se confirme el contenido */}
           </div>
         </Container>
       </Section>
@@ -125,32 +123,32 @@ export default function Proyectos() {
 
           <div className="mt-8 grid gap-6 sm:grid-cols-2">
             <ProyectoCard
-              titulo="Integración de plataforma de pagos"
+              titulo="Carrier billing WOM"
+              sector="Telecomunicaciones"
+              descripcion="Integración de sistemas de carrier billing con proveedores de contenido digital. Desarrollo de microservicios para gestión de suscripciones y cobros."
+              tecnologias={["Spring Boot", "Kafka", "MongoDB", "OpenShift"]}
+            />
+
+            <ProyectoCard
+              titulo="Integraciones Spotify, Netflix, Boku"
+              sector="Telecomunicaciones"
+              descripcion="Desarrollo de capas de integración entre WOM y plataformas de contenido para suscripciones y pagos vía factura telefónica."
+              tecnologias={["Spring Boot", "REST", "Kafka", "MongoDB"]}
+            />
+
+            <ProyectoCard
+              titulo="Integración Transbank"
               sector="Servicios financieros"
-              descripcion="Diseño e implementación de capas de integración entre sistemas de procesamiento de pagos y plataformas de terceros usando Red Hat Fuse."
+              descripcion="Diseño e implementación de capas de integración entre sistemas de procesamiento de pagos y plataformas de comercio usando Red Hat Fuse."
               tecnologias={["Red Hat Fuse", "Apache Camel", "REST", "SOAP"]}
             />
 
             <ProyectoCard
-              titulo="Bus de servicios empresarial"
+              titulo="Integración Cencosud"
               sector="Retail"
               descripcion="Implementación de ESB para orquestar servicios entre sistemas de inventario, ventas y logística."
               tecnologias={["Apache ServiceMix", "Apache Camel", "JMS"]}
             />
-
-            <ProyectoCard
-              titulo="Integración de operador móvil"
-              sector="Telecomunicaciones"
-              descripcion="Desarrollo de microservicios de integración para conectar sistemas de negocio con plataformas de terceros, incluyendo proveedores de contenido."
-              tecnologias={[
-                "Spring Boot",
-                "Kafka",
-                "MongoDB",
-                "OpenShift",
-              ]}
-            />
-
-            {/* TODO: Agregar proyectos adicionales cuando se confirme permiso */}
           </div>
         </Container>
       </Section>
