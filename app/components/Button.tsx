@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ReactNode } from "react";
 
-type ButtonVariant = "primary" | "secondary";
+type ButtonVariant = "primary" | "secondary" | "accent";
 
 interface ButtonBaseProps {
   children: ReactNode;
@@ -22,13 +22,15 @@ interface ButtonElementProps extends ButtonBaseProps {
 type ButtonProps = ButtonLinkProps | ButtonElementProps;
 
 const baseClasses =
-  "inline-flex items-center justify-center rounded-[var(--radius-full)] px-6 py-3 text-sm font-medium transition-colors";
+  "inline-flex items-center justify-center gap-2 rounded-[var(--radius-sm)] px-4 py-2.5 text-sm font-medium transition-colors border";
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "bg-[var(--accent)] text-[var(--accent-foreground)] hover:bg-[var(--accent-hover)]",
+    "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] border-[var(--button-primary-bg)] hover:bg-[var(--button-primary-hover)] hover:border-[var(--button-primary-hover)]",
   secondary:
-    "border border-[var(--border)] bg-[var(--surface-elevated)] text-[var(--text-primary)] hover:bg-[var(--surface)]",
+    "bg-[var(--surface-elevated)] text-[var(--text-primary)] border-[var(--border)] hover:bg-[var(--surface)] hover:border-[var(--border-hover)]",
+  accent:
+    "bg-[var(--accent)] text-[var(--accent-foreground)] border-[var(--accent)] hover:bg-[var(--accent-hover)] hover:border-[var(--accent-hover)]",
 };
 
 function isLink(props: ButtonProps): props is ButtonLinkProps {

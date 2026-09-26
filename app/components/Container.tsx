@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-type ContainerSize = "narrow" | "default" | "wide";
+type ContainerSize = "prose" | "default" | "wide";
 
 interface ContainerProps {
   children: ReactNode;
@@ -9,19 +9,19 @@ interface ContainerProps {
 }
 
 const sizeClasses: Record<ContainerSize, string> = {
-  narrow: "max-w-2xl",
-  default: "max-w-3xl",
-  wide: "max-w-5xl",
+  prose: "max-w-[720px]",
+  default: "max-w-[1200px]",
+  wide: "max-w-[1200px]",
 };
 
 export default function Container({
   children,
-  size = "wide",
+  size = "default",
   className = "",
 }: ContainerProps) {
   return (
     <div
-      className={`mx-auto px-[var(--spacing-container-x)] sm:px-[var(--spacing-container-x-sm)] ${sizeClasses[size]} ${className}`}
+      className={`mx-auto w-full px-4 sm:px-6 ${sizeClasses[size]} ${className}`}
     >
       {children}
     </div>

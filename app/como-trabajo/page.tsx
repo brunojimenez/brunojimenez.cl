@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import Card, { CardTitle, CardDescription } from "../components/Card";
 import Container from "../components/Container";
 import Section from "../components/Section";
+import EyebrowLabel from "../components/EyebrowLabel";
 
 export const metadata: Metadata = {
   title: "Cómo trabajo",
@@ -24,11 +25,12 @@ export default function ComoTrabajo() {
   return (
     <div className="flex flex-col">
       <Section>
-        <Container size="narrow">
-          <h1 className="text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl">
+        <Container size="prose">
+          <EyebrowLabel>Metodología</EyebrowLabel>
+          <h1 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-4xl">
             Cómo trabajo
           </h1>
-          <p className="mt-4 text-lg text-[var(--text-secondary)]">
+          <p className="mt-4 text-lg text-[var(--text-muted)]">
             Mi enfoque para proyectos de integración y modernización de
             sistemas.
           </p>
@@ -37,12 +39,12 @@ export default function ComoTrabajo() {
 
       <Section variant="surface">
         <Container>
-          <h2 className="text-2xl font-bold tracking-tight text-[var(--text-primary)]">
+          <h2 className="mb-8 text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
             Principios
           </h2>
 
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <Card>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <Card hover>
               <CardTitle>Entender antes de construir</CardTitle>
               <CardDescription>
                 Antes de escribir código, necesito entender el problema de
@@ -52,7 +54,7 @@ export default function ComoTrabajo() {
               </CardDescription>
             </Card>
 
-            <Card>
+            <Card hover>
               <CardTitle>Iteraciones cortas</CardTitle>
               <CardDescription>
                 Prefiero entregar algo funcional rápido y ajustar, que diseñar
@@ -61,7 +63,7 @@ export default function ComoTrabajo() {
               </CardDescription>
             </Card>
 
-            <Card>
+            <Card hover>
               <CardTitle>Documentar lo que importa</CardTitle>
               <CardDescription>
                 Contratos de API, decisiones de arquitectura y configuración de
@@ -74,21 +76,21 @@ export default function ComoTrabajo() {
       </Section>
 
       <Section>
-        <Container>
-          <h2 className="text-2xl font-bold tracking-tight text-[var(--text-primary)]">
+        <Container size="prose">
+          <h2 className="mb-8 text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
             Proceso típico
           </h2>
 
-          <div className="mt-8 space-y-8">
+          <div className="space-y-8">
             <div className="flex gap-4">
-              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--accent)] text-sm font-bold text-[var(--accent-foreground)]">
-                1
+              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-[var(--accent)] font-mono text-sm font-bold text-white">
+                01
               </div>
               <div>
                 <h3 className="font-semibold text-[var(--text-primary)]">
                   Descubrimiento
                 </h3>
-                <p className="mt-2 text-[var(--text-secondary)]">
+                <p className="mt-2 text-sm text-[var(--text-muted)]">
                   Entender qué sistemas existen, cómo se comunican hoy, qué
                   datos fluyen entre ellos y cuáles son los puntos de dolor.
                   Revisar documentación existente y hablar con quienes operan
@@ -98,14 +100,14 @@ export default function ComoTrabajo() {
             </div>
 
             <div className="flex gap-4">
-              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--accent)] text-sm font-bold text-[var(--accent-foreground)]">
-                2
+              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-[var(--accent)] font-mono text-sm font-bold text-white">
+                02
               </div>
               <div>
                 <h3 className="font-semibold text-[var(--text-primary)]">
                   Diseño de integración
                 </h3>
-                <p className="mt-2 text-[var(--text-secondary)]">
+                <p className="mt-2 text-sm text-[var(--text-muted)]">
                   Definir la arquitectura de integración: qué patrones usar
                   (API, eventos, batch), cómo manejar errores, qué monitorear.
                   Documentar las decisiones y sus razones.
@@ -114,14 +116,14 @@ export default function ComoTrabajo() {
             </div>
 
             <div className="flex gap-4">
-              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--accent)] text-sm font-bold text-[var(--accent-foreground)]">
-                3
+              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-[var(--accent)] font-mono text-sm font-bold text-white">
+                03
               </div>
               <div>
                 <h3 className="font-semibold text-[var(--text-primary)]">
                   Implementación iterativa
                 </h3>
-                <p className="mt-2 text-[var(--text-secondary)]">
+                <p className="mt-2 text-sm text-[var(--text-muted)]">
                   Construir en ciclos cortos, empezando por el camino más
                   crítico. Probar la integración real lo antes posible, no solo
                   con mocks. Ajustar el diseño según lo que se descubre.
@@ -130,14 +132,14 @@ export default function ComoTrabajo() {
             </div>
 
             <div className="flex gap-4">
-              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--accent)] text-sm font-bold text-[var(--accent-foreground)]">
-                4
+              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-[var(--accent)] font-mono text-sm font-bold text-white">
+                04
               </div>
               <div>
                 <h3 className="font-semibold text-[var(--text-primary)]">
                   Estabilización y entrega
                 </h3>
-                <p className="mt-2 text-[var(--text-secondary)]">
+                <p className="mt-2 text-sm text-[var(--text-muted)]">
                   Pruebas de carga, manejo de errores, monitoreo y alertas.
                   Documentación de operación. Transferencia de conocimiento al
                   equipo que va a mantener la integración.
@@ -150,12 +152,12 @@ export default function ComoTrabajo() {
 
       <Section variant="surface">
         <Container>
-          <h2 className="text-2xl font-bold tracking-tight text-[var(--text-primary)]">
+          <h2 className="mb-8 text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
             Qué esperar
           </h2>
 
-          <div className="mt-8 grid gap-6 sm:grid-cols-2">
-            <Card>
+          <div className="grid gap-6 sm:grid-cols-2">
+            <Card hover>
               <CardTitle>Comunicación directa</CardTitle>
               <CardDescription>
                 Prefiero conversaciones cortas y frecuentes a reuniones largas.
@@ -163,7 +165,7 @@ export default function ComoTrabajo() {
               </CardDescription>
             </Card>
 
-            <Card>
+            <Card hover>
               <CardTitle>Foco en producción</CardTitle>
               <CardDescription>
                 El código que no está en producción no existe. Trabajo para que
@@ -172,7 +174,7 @@ export default function ComoTrabajo() {
               </CardDescription>
             </Card>
 
-            <Card>
+            <Card hover>
               <CardTitle>Transparencia técnica</CardTitle>
               <CardDescription>
                 Explico las opciones técnicas y sus trade-offs. Las decisiones
@@ -181,7 +183,7 @@ export default function ComoTrabajo() {
               </CardDescription>
             </Card>
 
-            <Card>
+            <Card hover>
               <CardTitle>Compromiso con la calidad</CardTitle>
               <CardDescription>
                 Tests, revisión de código, monitoreo. Las integraciones son
@@ -189,22 +191,20 @@ export default function ComoTrabajo() {
               </CardDescription>
             </Card>
           </div>
-
-          {/* TODO: Agregar sección sobre uso de IA en desarrollo cuando se confirme (decisión D6) */}
         </Container>
       </Section>
 
       {/* CTA */}
       <Section>
-        <Container size="narrow" className="text-center">
-          <h2 className="text-2xl font-bold tracking-tight text-[var(--text-primary)]">
+        <Container size="prose" className="text-center">
+          <h2 className="text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
             ¿Quieres saber más?
           </h2>
-          <p className="mt-4 text-[var(--text-secondary)]">
+          <p className="mt-4 text-[var(--text-muted)]">
             Conversemos sobre tu proyecto y cómo podría ayudarte.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-            <Button href="/contacto">Contactar</Button>
+            <Button href="/contacto" variant="accent">Contactar</Button>
             <Button href="/proyectos" variant="secondary">
               Ver proyectos
             </Button>
@@ -213,7 +213,7 @@ export default function ComoTrabajo() {
           <div className="mt-12">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+              className="inline-flex items-center gap-2 text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
             >
               <svg
                 className="h-4 w-4"

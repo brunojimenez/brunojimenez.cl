@@ -3,6 +3,7 @@ import Link from "next/link";
 import Button from "../components/Button";
 import Container from "../components/Container";
 import Section from "../components/Section";
+import EyebrowLabel from "../components/EyebrowLabel";
 
 export const metadata: Metadata = {
   title: "Sobre mí",
@@ -23,14 +24,13 @@ export default function SobreMi() {
   return (
     <div className="flex flex-col">
       <Section>
-        <Container size="narrow">
-          <h1 className="text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl">
+        <Container size="prose">
+          <EyebrowLabel>Perfil profesional</EyebrowLabel>
+          <h1 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-4xl">
             Sobre mí
           </h1>
 
-          {/* TODO: Agregar foto profesional cuando esté disponible */}
-
-          <div className="mt-8 space-y-6 text-[var(--text-secondary)]">
+          <div className="mt-10 space-y-6 text-[var(--text-muted)]">
             <p className="text-lg leading-relaxed">
               Llevo 25 años haciendo que sistemas distintos se entiendan entre
               sí. Es un tema que parece técnico, pero en el fondo es de
@@ -38,7 +38,7 @@ export default function SobreMi() {
               separado trabajen juntas sin perder datos ni romper procesos.
             </p>
 
-            <h2 className="pt-4 text-xl font-semibold text-[var(--text-primary)]">
+            <h2 className="pt-6 text-xl font-semibold text-[var(--text-primary)]">
               El hilo de mi carrera
             </h2>
 
@@ -64,7 +64,7 @@ export default function SobreMi() {
               del operador con plataformas como Spotify, Netflix y Boku.
             </p>
 
-            <h2 className="pt-4 text-xl font-semibold text-[var(--text-primary)]">
+            <h2 className="pt-6 text-xl font-semibold text-[var(--text-primary)]">
               Cómo trabajo
             </h2>
 
@@ -74,12 +74,10 @@ export default function SobreMi() {
               son mi especialidad; lo mío es llegar cuando ya existe algo que
               funciona y hay que integrarlo con algo nuevo.
             </p>
-
-            {/* TODO: Agregar sección de intereses personales/profesionales cuando se confirme contenido */}
           </div>
 
           <div className="mt-12 flex flex-col gap-4 sm:flex-row">
-            <Button href="/cv">Ver mi trayectoria</Button>
+            <Button href="/cv" variant="accent">Ver mi trayectoria</Button>
             <Button href="/contacto" variant="secondary">
               Contactar
             </Button>
@@ -88,7 +86,7 @@ export default function SobreMi() {
           <div className="mt-12">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+              className="inline-flex items-center gap-2 text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
             >
               <svg
                 className="h-4 w-4"

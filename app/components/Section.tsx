@@ -12,7 +12,7 @@ interface SectionProps {
 const variantClasses: Record<SectionVariant, string> = {
   default: "bg-[var(--background)]",
   surface: "bg-[var(--surface)]",
-  muted: "border-y border-[var(--border)] bg-[var(--surface)]",
+  muted: "bg-[var(--surface-muted)]",
 };
 
 export default function Section({
@@ -24,7 +24,7 @@ export default function Section({
   return (
     <section
       id={id}
-      className={`py-[var(--spacing-section-y)] sm:py-[var(--spacing-section-y-lg)] ${variantClasses[variant]} ${className}`}
+      className={`py-10 sm:py-16 ${variantClasses[variant]} ${className}`}
     >
       {children}
     </section>
