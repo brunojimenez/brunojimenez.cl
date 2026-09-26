@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Card from "../components/Card";
+import Container from "../components/Container";
+import Section from "../components/Section";
 
 export const metadata: Metadata = {
   title: "Contacto",
@@ -19,18 +22,18 @@ export const metadata: Metadata = {
 export default function Contacto() {
   return (
     <div className="flex flex-col">
-      <section className="bg-white px-4 py-16 sm:px-6 sm:py-24 dark:bg-zinc-950">
-        <div className="mx-auto max-w-2xl">
-          <h1 className="text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-100">
+      <Section>
+        <Container size="narrow">
+          <h1 className="text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl">
             Hablemos
           </h1>
-          <p className="mt-4 text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
+          <p className="mt-4 text-lg leading-relaxed text-[var(--text-secondary)]">
             Si tienes sistemas que necesitan integrarse o modernizarse, me
             encantaría escuchar sobre tu proyecto.
           </p>
 
           <div className="mt-12">
-            <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+            <h2 className="text-lg font-semibold text-[var(--text-primary)]">
               Encuéntrame en
             </h2>
             <div className="mt-4 flex flex-col gap-4">
@@ -38,7 +41,7 @@ export default function Contacto() {
                 href="https://www.linkedin.com/in/brunojimenezchavez"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-3 rounded-lg border border-zinc-200 bg-white p-4 transition-colors hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-zinc-700 dark:hover:bg-zinc-800"
+                className="group flex items-center gap-3 rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface-elevated)] p-4 transition-colors hover:border-[var(--border-muted)] hover:bg-[var(--surface)]"
               >
                 <svg
                   className="h-6 w-6 text-[#0A66C2]"
@@ -49,15 +52,15 @@ export default function Contacto() {
                   <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                 </svg>
                 <div>
-                  <span className="font-medium text-zinc-900 dark:text-zinc-100">
+                  <span className="font-medium text-[var(--text-primary)]">
                     LinkedIn
                   </span>
-                  <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                  <p className="text-sm text-[var(--text-muted)]">
                     linkedin.com/in/brunojimenezchavez
                   </p>
                 </div>
                 <svg
-                  className="ml-auto h-5 w-5 text-zinc-400 transition-transform group-hover:translate-x-1"
+                  className="ml-auto h-5 w-5 text-[var(--text-subtle)] transition-transform group-hover:translate-x-1"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
@@ -75,37 +78,37 @@ export default function Contacto() {
             </div>
           </div>
 
-          <div className="mt-12 rounded-lg border border-zinc-200 bg-zinc-50 p-6 dark:border-zinc-800 dark:bg-zinc-900">
-            <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+          <Card className="mt-12 bg-[var(--surface)]">
+            <h2 className="text-lg font-semibold text-[var(--text-primary)]">
               ¿Qué proyectos me interesan?
             </h2>
-            <ul className="mt-4 space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
+            <ul className="mt-4 space-y-2 text-sm text-[var(--text-secondary)]">
               <li className="flex items-start gap-2">
-                <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-zinc-400" />
+                <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--text-subtle)]" />
                 <span>
                   Empresas con sistemas en producción que necesitan integrarse o
                   modernizarse
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-zinc-400" />
+                <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--text-subtle)]" />
                 <span>
                   Proyectos de integración empresarial (APIs, eventos, colas)
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-zinc-400" />
+                <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--text-subtle)]" />
                 <span>
                   Migraciones de plataformas legacy a arquitecturas modernas
                 </span>
               </li>
             </ul>
-          </div>
+          </Card>
 
           <div className="mt-8">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+              className="inline-flex items-center gap-2 text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
             >
               <svg
                 className="h-4 w-4"
@@ -123,8 +126,8 @@ export default function Contacto() {
               Volver al inicio
             </Link>
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
     </div>
   );
 }
