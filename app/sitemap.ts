@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://brunojimenez.cl";
-  const pages = ["", "/contacto"];
+  const pages = ["", "/contacto", "/privacidad"];
 
   return pages.map((p) => ({
     url: base + p,
