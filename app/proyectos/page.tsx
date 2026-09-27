@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Button from "../components/Button";
 import Card, { CardTitle, CardDescription } from "../components/Card";
 import Container from "../components/Container";
 import Section from "../components/Section";
+import EyebrowLabel from "../components/EyebrowLabel";
+import Tag from "../components/Tag";
 
 export const metadata: Metadata = {
   title: "Proyectos",
@@ -36,20 +37,15 @@ function ProyectoCard({
   resultado,
 }: ProyectoCardProps) {
   return (
-    <Card>
-      <p className="text-xs font-medium uppercase tracking-wide text-[var(--text-muted)]">
-        {sector}
-      </p>
-      <CardTitle>{titulo}</CardTitle>
-      <CardDescription>{descripcion}</CardDescription>
-      <div className="mt-4 flex flex-wrap gap-2">
+    <Card hover className="flex flex-col">
+      <div className="flex-1">
+        <EyebrowLabel className="whitespace-nowrap text-[var(--accent)]">{sector}</EyebrowLabel>
+        <CardTitle className="mt-2">{titulo}</CardTitle>
+        <CardDescription>{descripcion}</CardDescription>
+      </div>
+      <div className="mt-4 flex flex-wrap gap-1.5">
         {tecnologias.map((tech) => (
-          <span
-            key={tech}
-            className="rounded-[var(--radius-sm)] bg-[var(--surface)] px-2 py-1 text-xs text-[var(--text-muted)]"
-          >
-            {tech}
-          </span>
+          <Tag key={tech}>{tech}</Tag>
         ))}
       </div>
       {resultado && (
@@ -65,28 +61,31 @@ export default function Proyectos() {
   return (
     <div className="flex flex-col">
       <Section>
-        <Container size="narrow">
-          <h1 className="text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl">
-            Proyectos
-          </h1>
-          <p className="mt-4 text-lg text-[var(--text-secondary)]">
-            Una selección de proyectos de integración y modernización en los que
-            he participado.
-          </p>
+        <Container>
+          <div className="max-w-2xl">
+            <EyebrowLabel>Casos de estudio</EyebrowLabel>
+            <h1 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-4xl">
+              Proyectos e Integraciones
+            </h1>
+            <p className="mt-4 text-lg text-[var(--text-muted)]">
+              Una selección de proyectos de integración y modernización en los que
+              he participado.
+            </p>
+          </div>
         </Container>
       </Section>
 
       <Section variant="surface">
         <Container>
-          <h2 className="text-2xl font-bold tracking-tight text-[var(--text-primary)]">
+          <h2 className="mb-2 text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
             Migraciones de plataforma
           </h2>
-          <p className="mt-2 text-[var(--text-secondary)]">
+          <p className="mb-8 text-[var(--text-muted)]">
             Proyectos de migración de servidores de aplicaciones y portales
             empresariales.
           </p>
 
-          <div className="mt-8 grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <ProyectoCard
               titulo="Migración BCI a Red Hat JBoss EAP"
               sector="Banca"
@@ -114,14 +113,14 @@ export default function Proyectos() {
 
       <Section>
         <Container>
-          <h2 className="text-2xl font-bold tracking-tight text-[var(--text-primary)]">
+          <h2 className="mb-2 text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
             Integración de sistemas
           </h2>
-          <p className="mt-2 text-[var(--text-secondary)]">
+          <p className="mb-8 text-[var(--text-muted)]">
             Proyectos de integración entre sistemas heterogéneos.
           </p>
 
-          <div className="mt-8 grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-2">
             <ProyectoCard
               titulo="Carrier billing WOM"
               sector="Telecomunicaciones"
@@ -155,15 +154,15 @@ export default function Proyectos() {
 
       <Section variant="surface">
         <Container>
-          <h2 className="text-2xl font-bold tracking-tight text-[var(--text-primary)]">
+          <h2 className="mb-2 text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
             Arquitectura y diseño
           </h2>
-          <p className="mt-2 text-[var(--text-secondary)]">
+          <p className="mb-8 text-[var(--text-muted)]">
             Proyectos de diseño de arquitectura y patrones de integración.
           </p>
 
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <Card>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <Card hover>
               <CardTitle as="h3">Anti-Corruption Layer</CardTitle>
               <CardDescription>
                 Implementación del patrón Anti-Corruption Layer (Eric Evans,
@@ -172,7 +171,7 @@ export default function Proyectos() {
               </CardDescription>
             </Card>
 
-            <Card>
+            <Card hover>
               <CardTitle as="h3">Event-Driven Architecture</CardTitle>
               <CardDescription>
                 Diseño de arquitecturas basadas en eventos con Kafka para
@@ -180,7 +179,7 @@ export default function Proyectos() {
               </CardDescription>
             </Card>
 
-            <Card>
+            <Card hover>
               <CardTitle as="h3">API Gateway</CardTitle>
               <CardDescription>
                 Implementación de gateways de API para unificar acceso a
@@ -193,38 +192,30 @@ export default function Proyectos() {
 
       {/* CTA */}
       <Section>
-        <Container size="narrow" className="text-center">
-          <h2 className="text-2xl font-bold tracking-tight text-[var(--text-primary)]">
-            ¿Tienes un proyecto similar?
-          </h2>
-          <p className="mt-4 text-[var(--text-secondary)]">
-            Si necesitas integrar sistemas o modernizar una plataforma,
-            conversemos.
-          </p>
-          <Button href="/contacto" className="mt-8">
-            Contactar
-          </Button>
-
-          <div className="mt-12">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
-            >
-              <svg
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 19.5L8.25 12l7.5-7.5"
-                />
-              </svg>
-              Volver al inicio
-            </Link>
+        <Container>
+          <div className="rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface-elevated)] p-8 sm:p-12">
+            <div className="flex flex-col items-center gap-6 md:flex-row md:items-center md:justify-between">
+              <div className="flex-1 min-w-0 text-center md:text-left">
+                <EyebrowLabel className="text-[var(--accent)]">¿Tienes un proyecto similar?</EyebrowLabel>
+                <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
+                  ¿Tienes sistemas que necesitan hablar entre sí?
+                </h2>
+                <p className="mt-4 text-[var(--text-muted)]">
+                  Si necesitas integrar sistemas o modernizar una plataforma,
+                  conversemos.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 shrink-0 sm:flex-row">
+                <Button href="/contacto" variant="accent">Contactar</Button>
+                <Button
+                  href="https://www.linkedin.com/in/brunojimenezchavez"
+                  variant="secondary"
+                  external
+                >
+                  Ver LinkedIn
+                </Button>
+              </div>
+            </div>
           </div>
         </Container>
       </Section>
