@@ -23,7 +23,7 @@ export default function Privacidad() {
     <div className="flex flex-col">
       <Section>
         <Container>
-          <div className="w-full max-w-2xl">
+          <div className="max-w-2xl">
             <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
               <EyebrowLabel className="whitespace-nowrap">Documento legal</EyebrowLabel>
               <span className="text-[var(--text-subtle)]">•</span>

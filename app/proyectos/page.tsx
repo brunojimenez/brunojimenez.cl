@@ -62,8 +62,8 @@ export default function Proyectos() {
     <div className="flex flex-col">
       <Section>
         <Container>
-          <div className="w-full max-w-2xl">
-            <EyebrowLabel className="whitespace-nowrap">Casos de estudio</EyebrowLabel>
+          <div className="max-w-2xl">
+            <EyebrowLabel>Casos de estudio</EyebrowLabel>
             <h1 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-4xl">
               Proyectos e Integraciones
             </h1>
@@ -196,7 +196,7 @@ export default function Proyectos() {
           <div className="rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface-elevated)] p-8 sm:p-12">
             <div className="flex flex-col items-center gap-6 md:flex-row md:items-center md:justify-between">
               <div className="flex-1 min-w-0 text-center md:text-left">
-                <EyebrowLabel className="whitespace-nowrap text-[var(--accent)]">¿Tienes un proyecto similar?</EyebrowLabel>
+                <EyebrowLabel className="text-[var(--accent)]">¿Tienes un proyecto similar?</EyebrowLabel>
                 <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
                   ¿Tienes sistemas que necesitan hablar entre sí?
                 </h2>

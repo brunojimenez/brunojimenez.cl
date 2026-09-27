@@ -11,7 +11,7 @@ export default function Home() {
       {/* Hero */}
       <Section className="!pb-6">
         <Container>
-          <div className="w-full max-w-[720px]">
+          <div className="max-w-3xl">
             <h1 className="text-4xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-[3.5rem] lg:leading-[1.08]">
               Backend e integración de sistemas.
             </h1>
@@ -56,7 +56,7 @@ export default function Home() {
               <Tag>OpenShift</Tag>
             </div>
             <div className="hidden h-4 w-px bg-[var(--border)] sm:block" />
-            <div className="shrink-0 whitespace-nowrap text-sm text-[var(--text-muted)]">
+            <div className="text-sm text-[var(--text-muted)]">
               Ingeniero de Ejecución en Informática (PUCV)
             </div>
           </div>
@@ -66,7 +66,7 @@ export default function Home() {
       {/* What I do - 3 cards */}
       <Section>
         <Container>
-          <div className="mb-10 w-full max-w-[620px]">
+          <div className="mb-10 max-w-xl">
             <EyebrowLabel className="whitespace-nowrap">Capacidades técnicas</EyebrowLabel>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-3xl">
               Qué hago
