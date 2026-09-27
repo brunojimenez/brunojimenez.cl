@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className="border-t border-[var(--border)] bg-[var(--surface-elevated)]">
       <Container>
         <div className="flex flex-col items-center gap-4 py-10 text-center sm:flex-row sm:justify-between sm:text-left">
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-1 min-w-0 flex-col gap-1">
             <p className="text-sm text-[var(--text-secondary)]">
               © {currentYear} Bruno Jiménez. Ingeniero de Ejecución en Informática (PUCV).
             </p>
@@ -16,7 +16,7 @@ export default function Footer() {
               Arquitectura de Software • APIs de Telecomunicaciones • Sistemas Distribuidos
             </p>
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex shrink-0 items-center gap-6">
             <a
               href="mailto:hola@brunojimenez.cl"
               className="font-mono text-[0.8125rem] text-[var(--text-muted)] transition-colors hover:text-[var(--accent)]"

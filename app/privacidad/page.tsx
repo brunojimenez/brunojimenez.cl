@@ -24,10 +24,10 @@ export default function Privacidad() {
       <Section>
         <Container>
           <div className="max-w-2xl">
-            <div className="flex items-center gap-2">
-              <EyebrowLabel>Documento legal</EyebrowLabel>
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+              <EyebrowLabel className="whitespace-nowrap">Documento legal</EyebrowLabel>
               <span className="text-[var(--text-subtle)]">•</span>
-              <EyebrowLabel>Protocolo RFC / Privacidad</EyebrowLabel>
+              <EyebrowLabel className="whitespace-nowrap">Protocolo RFC / Privacidad</EyebrowLabel>
             </div>
             <h1 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-4xl">
               Política de Privacidad

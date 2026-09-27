@@ -194,9 +194,9 @@ export default function Proyectos() {
       <Section>
         <Container>
           <div className="rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface-elevated)] p-8 sm:p-12">
-            <div className="flex flex-col items-center justify-between gap-6 lg:flex-row">
-              <div className="max-w-xl text-center lg:text-left">
-                <EyebrowLabel className="text-[var(--accent)]">¿Tienes un proyecto similar?</EyebrowLabel>
+            <div className="flex flex-col items-center gap-6 md:flex-row md:items-center md:justify-between">
+              <div className="flex-1 min-w-0 text-center md:text-left">
+                <EyebrowLabel className="whitespace-nowrap text-[var(--accent)]">¿Tienes un proyecto similar?</EyebrowLabel>
                 <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
                   ¿Tienes sistemas que necesitan hablar entre sí?
                 </h2>
@@ -205,7 +205,7 @@ export default function Proyectos() {
                   conversemos.
                 </p>
               </div>
-              <div className="flex flex-col gap-3 sm:flex-row">
+              <div className="flex flex-col gap-3 shrink-0 sm:flex-row">
                 <Button href="/contacto" variant="accent">Contactar</Button>
                 <Button
                   href="https://www.linkedin.com/in/brunojimenezchavez"

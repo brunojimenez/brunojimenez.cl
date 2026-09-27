@@ -39,12 +39,12 @@ export default function Home() {
       {/* Credentials strip */}
       <Section variant="muted" className="!py-6">
         <Container>
-          <div className="flex flex-col items-center justify-center gap-4 text-center sm:flex-row sm:gap-8">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-col flex-wrap items-center justify-center gap-4 text-center sm:flex-row sm:gap-x-8 sm:gap-y-4">
+            <div className="flex shrink-0 items-center gap-2">
               <span className="text-2xl font-semibold tabular-nums text-[var(--text-primary)]">
                 25
               </span>
-              <span className="text-sm text-[var(--text-muted)]">
+              <span className="whitespace-nowrap text-sm text-[var(--text-muted)]">
                 años de trayectoria
               </span>
             </div>
@@ -56,7 +56,7 @@ export default function Home() {
               <Tag>OpenShift</Tag>
             </div>
             <div className="hidden h-4 w-px bg-[var(--border)] sm:block" />
-            <div className="text-sm text-[var(--text-muted)]">
+            <div className="shrink-0 whitespace-nowrap text-sm text-[var(--text-muted)]">
               Ingeniero de Ejecución en Informática (PUCV)
             </div>
           </div>

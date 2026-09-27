@@ -277,13 +277,13 @@ export default function CV() {
             Idiomas
           </h3>
           <div className="mt-4 space-y-2">
-            <div className="flex items-center justify-between rounded-[var(--radius-sm)] border border-[var(--border)] bg-[var(--surface-elevated)] px-4 py-3">
+            <div className="flex items-center justify-between gap-4 rounded-[var(--radius-sm)] border border-[var(--border)] bg-[var(--surface-elevated)] px-4 py-3">
               <span className="text-sm text-[var(--text-secondary)]">Español</span>
-              <span className="font-mono text-xs text-[var(--text-muted)]">Nativo</span>
+              <span className="shrink-0 whitespace-nowrap font-mono text-xs text-[var(--text-muted)]">Nativo</span>
             </div>
-            <div className="flex items-center justify-between rounded-[var(--radius-sm)] border border-[var(--border)] bg-[var(--surface-elevated)] px-4 py-3">
+            <div className="flex items-center justify-between gap-4 rounded-[var(--radius-sm)] border border-[var(--border)] bg-[var(--surface-elevated)] px-4 py-3">
               <span className="text-sm text-[var(--text-secondary)]">Inglés</span>
-              <span className="font-mono text-xs text-[var(--text-muted)]">
+              <span className="shrink-0 whitespace-nowrap font-mono text-xs text-[var(--text-muted)]">
                 Lectura técnica
               </span>
             </div>
