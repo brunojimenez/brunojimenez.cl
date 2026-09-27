@@ -11,7 +11,7 @@ export default function Home() {
       {/* Hero */}
       <Section className="!pb-6">
         <Container>
-          <div className="w-full max-w-3xl">
+          <div className="w-full max-w-[720px]">
             <h1 className="text-4xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-[3.5rem] lg:leading-[1.08]">
               Backend e integración de sistemas.
             </h1>
@@ -66,7 +66,7 @@ export default function Home() {
       {/* What I do - 3 cards */}
       <Section>
         <Container>
-          <div className="mb-10 w-full max-w-xl">
+          <div className="mb-10 w-full max-w-[620px]">
             <EyebrowLabel className="whitespace-nowrap">Capacidades técnicas</EyebrowLabel>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-3xl">
               Qué hago

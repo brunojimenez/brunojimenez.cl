@@ -74,6 +74,13 @@
 }
 
 @theme inline {
+  /* Container sizes for max-w-* classes */
+  --container-xs: 20rem;    /* 320px */
+  --container-sm: 24rem;    /* 384px */
+  --container-md: 28rem;    /* 448px */
+  --container-lg: 32rem;    /* 512px */
+  --container-xl: 36rem;    /* 576px */
+  
   /* Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
