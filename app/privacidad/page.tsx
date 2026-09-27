@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphBase } from "../lib/site";
 import Link from "next/link";
 import Container from "../components/Container";
 import Section from "../components/Section";
@@ -12,9 +13,10 @@ export const metadata: Metadata = {
     canonical: "/privacidad",
   },
   openGraph: {
+    ...openGraphBase,
     title: "Privacidad | Bruno Jiménez",
     description: "Política de privacidad del sitio web de Bruno Jiménez.",
-    url: "https://brunojimenez.cl/privacidad",
+    url: "/privacidad",
   },
 };
 

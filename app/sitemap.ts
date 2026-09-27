@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "./lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://brunojimenez.cl";
+  const base = SITE_URL;
   const pages = [
     { path: "", priority: 1, changeFrequency: "monthly" as const },
     { path: "/cv", priority: 0.8, changeFrequency: "yearly" as const },

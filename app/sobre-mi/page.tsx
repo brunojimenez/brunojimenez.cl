@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { openGraphBase } from "../lib/site";
+import Image from "next/image";
 import Link from "next/link";
 import Button from "../components/Button";
 import Container from "../components/Container";
@@ -13,12 +15,21 @@ export const metadata: Metadata = {
     canonical: "/sobre-mi",
   },
   openGraph: {
+    ...openGraphBase,
     title: "Sobre mí | Bruno Jiménez",
     description:
       "25 años de experiencia en integración de sistemas y desarrollo backend.",
-    url: "https://brunojimenez.cl/sobre-mi",
+    url: "/sobre-mi",
   },
 };
+
+const filosofia = [
+  "Ir siempre un paso más allá de lo que se pide.",
+  "Partir aunque haya incertidumbre, pero partir.",
+  "Proponer antes de solicitar.",
+  "Cuidar a diario un buen ambiente de trabajo.",
+  "Compartir el conocimiento: orientar, capacitar y documentar.",
+];
 
 export default function SobreMi() {
   return (
@@ -30,38 +41,53 @@ export default function SobreMi() {
             Sobre mí
           </h1>
 
-          <div className="mt-10 space-y-6 text-[var(--text-muted)]">
-            <p className="text-lg leading-relaxed">
+          {/* En móvil la foto queda debajo del texto porque va después en el DOM */}
+          <div className="mt-10 grid gap-8 sm:grid-cols-[minmax(0,1fr)_200px] sm:items-center">
+            <p className="text-lg leading-relaxed text-[var(--text-muted)]">
               Llevo 25 años haciendo que sistemas distintos se entiendan entre
               sí. Es un tema que parece técnico, pero en el fondo es de
-              comunicación: conseguir que plataformas que fueron diseñadas por
-              separado trabajen juntas sin perder datos ni romper procesos.
+              comunicación: conseguir que plataformas diseñadas por separado
+              trabajen juntas, con datos íntegros y procesos continuos.
             </p>
+            <Image
+              src="/images/profile.webp"
+              alt="Retrato de Bruno Jiménez"
+              width={700}
+              height={942}
+              sizes="(min-width: 640px) 200px, 60vw"
+              className="w-3/5 max-w-60 rounded-[var(--radius-lg)] border border-[var(--border)] sm:w-full"
+              priority
+            />
+          </div>
 
-            <h2 className="pt-6 text-xl font-semibold text-[var(--text-primary)]">
+          <div className="mt-10 space-y-6 text-[var(--text-muted)]">
+            <h2 className="text-xl font-semibold text-[var(--text-primary)]">
               El hilo de mi carrera
             </h2>
 
             <p className="leading-relaxed">
               Empecé en soporte técnico y QA a principios de los 2000. Ahí
-              aprendí qué falla y por qué: los sistemas no se caen por magia,
-              sino por supuestos que nadie verificó. Esa experiencia me marcó.
+              aprendí a entender los sistemas desde adentro: cómo se comportan
+              en producción y por qué vale la pena verificar cada supuesto. Esa
+              mirada me acompaña hasta hoy.
             </p>
 
             <p className="leading-relaxed">
               Después pasé al desarrollo: .NET, Ruby on Rails, PL/SQL y
               finalmente Java. A mediados de la década de 2010 me especialicé en
               SOA y BPM, trabajando con Liferay, Oracle BPM y ServiceMix. Ahí
-              descubrí que lo que más me gustaba no era construir aplicaciones
-              desde cero, sino hacer que las existentes se comunicaran.
+              encontré mi especialidad: hacer que plataformas distintas trabajen
+              como una sola.
             </p>
 
             <p className="leading-relaxed">
               Desde entonces he trabajado en integración para banca (Transbank,
               BCI), retail (Cencosud, Casa&Ideas) y sector público (MINVU,
-              JUNAEB). Hoy estoy en WOM, desarrollando microservicios de
-              integración para carrier billing: conectar los sistemas de cobro
-              del operador con plataformas como Spotify, Netflix y Boku.
+              JUNAEB). Llegué a WOM como externo, integrando carrier billing con
+              Netflix, Spotify y Boku, y luego pasé a planta. Desde entonces he
+              trabajado en el equipo on premise
+              (OpenShift y Kafka), en el cloud (AWS) y hoy en ambos, con un rol
+              de liderazgo técnico en el área de Integración.
             </p>
 
             <h2 className="pt-6 text-xl font-semibold text-[var(--text-primary)]">
@@ -69,11 +95,39 @@ export default function SobreMi() {
             </h2>
 
             <p className="leading-relaxed">
-              Me gustan los proyectos donde ya hay sistemas en producción que
-              necesitan conectarse o modernizarse. Los proyectos desde cero no
-              son mi especialidad; lo mío es llegar cuando ya existe algo que
-              funciona y hay que integrarlo con algo nuevo.
+              Mi recorrido por múltiples lenguajes, motores de bases de datos y
+              plataformas me permite abordar con la misma soltura la
+              modernización de sistemas en producción y los proyectos nuevos.
+              Cuando un proyecto parte de cero, parto por la arquitectura: el
+              último
+              sistema de cobro de suscripciones que diseñé llegó a producción
+              en menos de dos meses, con cuatro personas desarrollando en
+              paralelo.
             </p>
+
+            <p className="leading-relaxed">
+              Tengo formación de Scrum Master y suele tocarme cubrir a mis
+              jefaturas cuando están de licencia. Pero como carrera prefiero el
+              liderazgo técnico a la jefatura de proyectos: como desarrollador
+              de la vieja escuela, me gusta seguir con las manos en el código.
+            </p>
+
+            <h2 className="pt-6 text-xl font-semibold text-[var(--text-primary)]">
+              Lo que me mueve
+            </h2>
+
+            <p className="leading-relaxed">
+              En el área de Integración de WOM tenemos una línea que también es
+              la mía: ser siempre un impulsor de las ideas.
+            </p>
+            <ul className="space-y-2">
+              {filosofia.map((idea) => (
+                <li key={idea} className="flex items-start gap-3 leading-relaxed">
+                  <span className="mt-2.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--accent)]" />
+                  <span className="text-[var(--text-secondary)]">{idea}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="mt-12 flex flex-col gap-4 sm:flex-row">

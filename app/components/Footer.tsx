@@ -13,7 +13,7 @@ export default function Footer() {
               © {currentYear} Bruno Jiménez. Ingeniero de Ejecución en Informática (PUCV).
             </p>
             <p className="font-mono text-[0.6875rem] font-medium uppercase tracking-[0.04em] text-[var(--text-muted)]">
-              Arquitectura de Software • APIs de Telecomunicaciones • Sistemas Distribuidos
+              Arquitectura de software • Integración • Agentic Coding
             </p>
           </div>
           <div className="flex shrink-0 items-center gap-6">

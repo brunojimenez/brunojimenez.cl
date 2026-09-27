@@ -1,6 +1,12 @@
 @import "tailwindcss";
 
-:root {
+/* El tema oscuro es el predeterminado; el claro se activa con data-theme="light"
+   en <html> (lo fija el script de app/layout.tsx y el botón ThemeToggle). */
+@custom-variant dark (&:where(:root:not([data-theme="light"]), :root:not([data-theme="light"]) *));
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
   /* Canvas & Surface */
   --background: #fafafa;
   --foreground: #09090b;
@@ -41,36 +47,36 @@
   --inverse-muted: #a1a1aa;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #09090b;
-    --foreground: #fafafa;
-    --surface: #18181b;
-    --surface-elevated: #27272a;
-    --surface-muted: #18181b;
+:root {
+  color-scheme: dark;
 
-    --text-primary: #fafafa;
-    --text-secondary: #e4e4e7;
-    --text-muted: #a1a1aa;
-    --text-subtle: #71717a;
+  --background: #09090b;
+  --foreground: #fafafa;
+  --surface: #18181b;
+  --surface-elevated: #27272a;
+  --surface-muted: #18181b;
 
-    --border: #27272a;
-    --border-hover: #3f3f46;
-    --border-focus: #3b82f6;
+  --text-primary: #fafafa;
+  --text-secondary: #e4e4e7;
+  --text-muted: #a1a1aa;
+  --text-subtle: #71717a;
 
-    --accent: #3b82f6;
-    --accent-hover: #2563eb;
-    --accent-muted: rgba(59, 130, 246, 0.1);
-    --accent-foreground: #ffffff;
+  --border: #27272a;
+  --border-hover: #3f3f46;
+  --border-focus: #3b82f6;
 
-    --button-primary-bg: #fafafa;
-    --button-primary-hover: #e4e4e7;
-    --button-primary-text: #09090b;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --accent-muted: rgba(59, 130, 246, 0.1);
+  --accent-foreground: #ffffff;
 
-    --inverse-bg: #fafafa;
-    --inverse-text: #09090b;
-    --inverse-muted: #71717a;
-  }
+  --button-primary-bg: #fafafa;
+  --button-primary-hover: #e4e4e7;
+  --button-primary-text: #09090b;
+
+  --inverse-bg: #fafafa;
+  --inverse-text: #09090b;
+  --inverse-muted: #71717a;
 }
 
 @theme inline {

@@ -4,14 +4,14 @@ import Link from "next/link";
 import { useState } from "react";
 import Button from "./Button";
 import Container from "./Container";
+import ThemeToggle from "./ThemeToggle";
 
+// Inicio va en el logo y Contacto en el botón "Hablemos": la nav queda en 4 enlaces.
 const navLinks = [
-  { href: "/", label: "Inicio" },
-  { href: "/sobre-mi", label: "Sobre mí" },
-  { href: "/cv", label: "Trayectoria" },
   { href: "/proyectos", label: "Proyectos" },
   { href: "/como-trabajo", label: "Cómo trabajo" },
-  { href: "/contacto", label: "Contacto" },
+  { href: "/cv", label: "Trayectoria" },
+  { href: "/sobre-mi", label: "Sobre mí" },
 ];
 
 function LogoMark() {
@@ -56,7 +56,7 @@ export default function Header() {
                 Bruno Jiménez
               </span>
               <span className="font-mono text-[0.6875rem] font-medium uppercase tracking-[0.04em] text-[var(--text-muted)]">
-                Backend e integración
+                Tech lead · Integración
               </span>
             </div>
           </Link>
@@ -74,7 +74,8 @@ export default function Header() {
             ))}
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <ThemeToggle />
             <Button href="/contacto" variant="accent" className="hidden sm:inline-flex">
               Hablemos
             </Button>
