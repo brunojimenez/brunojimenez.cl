@@ -167,7 +167,14 @@ export default function Privacidad() {
                 <p className="text-sm leading-relaxed text-[var(--text-muted)]">
                   Como este sitio no recopila datos personales, no hay información
                   que solicitar, modificar o eliminar. Si tienes alguna consulta
-                  sobre privacidad, puedes contactarme a través de{" "}
+                  sobre privacidad, puedes contactarme a{" "}
+                  <a
+                    href="mailto:hola@brunojimenez.cl"
+                    className="text-[var(--accent)] underline underline-offset-2 transition-colors hover:text-[var(--accent-hover)]"
+                  >
+                    hola@brunojimenez.cl
+                  </a>{" "}
+                  o a través de{" "}
                   <a
                     href="https://www.linkedin.com/in/brunojimenezchavez"
                     target="_blank"
