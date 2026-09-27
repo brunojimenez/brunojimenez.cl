@@ -25,7 +25,7 @@ export default function Contacto() {
     <div className="flex flex-col">
       <Section>
         <Container size="prose">
-          <EyebrowLabel>Hablemos</EyebrowLabel>
+          <EyebrowLabel className="whitespace-nowrap">Hablemos</EyebrowLabel>
           <h1 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-4xl">
             ¿Tienes un desafío de integración o arquitectura?
           </h1>

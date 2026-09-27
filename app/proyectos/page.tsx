@@ -39,7 +39,7 @@ function ProyectoCard({
   return (
     <Card hover className="flex flex-col">
       <div className="flex-1">
-        <EyebrowLabel className="text-[var(--accent)]">{sector}</EyebrowLabel>
+        <EyebrowLabel className="whitespace-nowrap text-[var(--accent)]">{sector}</EyebrowLabel>
         <CardTitle className="mt-2">{titulo}</CardTitle>
         <CardDescription>{descripcion}</CardDescription>
       </div>
@@ -62,8 +62,8 @@ export default function Proyectos() {
     <div className="flex flex-col">
       <Section>
         <Container>
-          <div className="max-w-2xl">
-            <EyebrowLabel>Casos de estudio</EyebrowLabel>
+          <div className="w-full max-w-2xl">
+            <EyebrowLabel className="whitespace-nowrap">Casos de estudio</EyebrowLabel>
             <h1 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-4xl">
               Proyectos e Integraciones
             </h1>

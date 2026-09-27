@@ -23,7 +23,7 @@ export default function Privacidad() {
     <div className="flex flex-col">
       <Section>
         <Container>
-          <div className="max-w-2xl">
+          <div className="w-full max-w-2xl">
             <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
               <EyebrowLabel className="whitespace-nowrap">Documento legal</EyebrowLabel>
               <span className="text-[var(--text-subtle)]">•</span>
@@ -45,7 +45,7 @@ export default function Privacidad() {
             <aside className="lg:col-span-4">
               <div className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-elevated)] p-4 lg:sticky lg:top-24">
                 <div className="flex items-center justify-between pb-2">
-                  <EyebrowLabel>Índice de cláusulas</EyebrowLabel>
+                  <EyebrowLabel className="whitespace-nowrap">Índice de cláusulas</EyebrowLabel>
                 </div>
                 <nav className="flex flex-col gap-1">
                   <a

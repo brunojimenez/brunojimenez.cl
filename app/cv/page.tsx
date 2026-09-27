@@ -94,7 +94,7 @@ export default function CV() {
       {/* Header */}
       <Section>
         <Container size="prose">
-          <EyebrowLabel>Trayectoria profesional</EyebrowLabel>
+          <EyebrowLabel className="whitespace-nowrap">Trayectoria profesional</EyebrowLabel>
           <h1 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-4xl">
             Línea de tiempo & Experiencia
           </h1>

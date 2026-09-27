@@ -25,7 +25,7 @@ export default function SobreMi() {
     <div className="flex flex-col">
       <Section>
         <Container size="prose">
-          <EyebrowLabel>Perfil profesional</EyebrowLabel>
+          <EyebrowLabel className="whitespace-nowrap">Perfil profesional</EyebrowLabel>
           <h1 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-4xl">
             Sobre mí
           </h1>

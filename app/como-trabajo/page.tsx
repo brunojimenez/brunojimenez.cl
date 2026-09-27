@@ -26,7 +26,7 @@ export default function ComoTrabajo() {
     <div className="flex flex-col">
       <Section>
         <Container size="prose">
-          <EyebrowLabel>Metodología</EyebrowLabel>
+          <EyebrowLabel className="whitespace-nowrap">Metodología</EyebrowLabel>
           <h1 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-4xl">
             Cómo trabajo
           </h1>
