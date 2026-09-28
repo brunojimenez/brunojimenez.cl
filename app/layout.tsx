@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Geist } from "next/font/google";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
@@ -127,6 +128,8 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        {/* Estadísticas anónimas de visitas, sin cookies (Vercel Web Analytics) */}
+        <Analytics />
       </body>
     </html>
   );

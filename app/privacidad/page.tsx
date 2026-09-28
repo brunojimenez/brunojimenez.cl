@@ -67,7 +67,7 @@ export default function Privacidad() {
                     className="flex items-center gap-2.5 rounded-[var(--radius-sm)] p-2 text-sm text-[var(--text-muted)] transition-colors hover:bg-[var(--surface)] hover:text-[var(--accent)]"
                   >
                     <span className="font-mono text-[0.6875rem] text-[var(--text-subtle)]">02.</span>
-                    <span>Cookies y rastreo</span>
+                    <span>Cookies y estadísticas</span>
                   </a>
                   <a
                     href="#alojamiento"
@@ -119,13 +119,15 @@ export default function Privacidad() {
                     02
                   </span>
                   <h2 className="text-lg font-semibold text-[var(--text-primary)]">
-                    Cookies y rastreo
+                    Cookies y estadísticas
                   </h2>
                 </div>
                 <p className="text-sm leading-relaxed text-[var(--text-muted)]">
-                  Este sitio no instala cookies propias ni utiliza herramientas de
-                  analítica que rastreen a personas individuales. La única forma de
-                  contacto disponible es a través de enlaces externos como LinkedIn.
+                  Este sitio no instala cookies. Para saber cuántas personas lo
+                  visitan uso Vercel Web Analytics, que registra estadísticas
+                  anónimas y agregadas (páginas vistas, país, tipo de dispositivo y
+                  sitio de origen) sin cookies ni datos que permitan identificarte.
+                  Para contactarme puedes escribir por correo o por LinkedIn.
                 </p>
               </article>
 
