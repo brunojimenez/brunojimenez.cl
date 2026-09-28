@@ -10,6 +10,7 @@ import EyebrowLabel from "../components/EyebrowLabel";
 import Tag from "../components/Tag";
 import EraSidebar, { type Era } from "../components/EraSidebar";
 import TracingBeam from "../components/TracingBeam";
+import { reveal } from "../lib/reveal";
 
 export const metadata: Metadata = {
   title: "Trayectoria",
@@ -47,7 +48,7 @@ function TimelineItem({
   isActive = false,
 }: TimelineItemProps) {
   return (
-    <article id={id} data-beam-stop className="relative scroll-mt-24 pl-8 md:pl-10">
+    <article id={id} data-beam-stop {...reveal()} className="relative scroll-mt-24 pl-8 md:pl-10">
       {/* Timeline spine */}
       <div className="absolute left-0 top-0 bottom-0 w-px bg-[var(--border)]" />
       {/* Timeline dot */}
@@ -349,7 +350,7 @@ export default function CV() {
         <Container>
           <div className="grid gap-8 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-12">
             <div>
-              <h2 className="text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
+              <h2 {...reveal()} className="text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
                 Aportes técnicos al equipo
               </h2>
               <p className="mt-2 text-sm text-[var(--text-muted)]">
@@ -365,9 +366,10 @@ export default function CV() {
               </p>
             </div>
             <ul className="grid gap-4 md:grid-cols-2 lg:pl-10">
-              {aportes.map((aporte) => (
+              {aportes.map((aporte, i) => (
                 <li
                   key={aporte}
+                  {...reveal((i % 2) * 100)}
                   className="spotlight flex items-start gap-3 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-elevated)] p-4 text-sm leading-relaxed md:[&:last-child:nth-child(odd)]:col-span-2"
                 >
                   <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--accent)]" />
@@ -383,12 +385,12 @@ export default function CV() {
       <Section variant="surface">
         <Container>
           <div className="grid gap-8 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-12">
-            <h2 className="text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
+            <h2 {...reveal()} className="text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
               Habilidades técnicas
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:pl-10 xl:grid-cols-3">
-              {habilidades.map((grupo) => (
-                <Card key={grupo.titulo}>
+              {habilidades.map((grupo, i) => (
+                <Card key={grupo.titulo} revealDelay={(i % 3) * 100}>
                   <h3 className="font-semibold text-[var(--text-primary)]">
                     {grupo.titulo}
                   </h3>
@@ -406,14 +408,14 @@ export default function CV() {
       <Section>
         <Container>
           <div className="grid gap-8 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-12">
-            <h2 className="text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
+            <h2 {...reveal()} className="text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
               Formación
             </h2>
 
             <div className="lg:pl-10">
               <div className="grid gap-4 md:grid-cols-3">
-                {titulos.map((t) => (
-                  <Card key={t.titulo}>
+                {titulos.map((t, i) => (
+                  <Card key={t.titulo} revealDelay={i * 100}>
                     <h3 className="font-semibold text-[var(--text-primary)]">
                       {t.titulo}
                     </h3>
@@ -428,7 +430,7 @@ export default function CV() {
               </div>
 
               <div className="mt-10 grid gap-10 md:grid-cols-2">
-                <div>
+                <div {...reveal()}>
                   <h3 className="text-lg font-semibold text-[var(--text-primary)]">
                     Cursos de capacitación
                   </h3>
@@ -452,7 +454,7 @@ export default function CV() {
                   </ul>
                 </div>
 
-                <div>
+                <div {...reveal(100)}>
                   <h3 className="text-lg font-semibold text-[var(--text-primary)]">
                     Idiomas
                   </h3>
@@ -481,14 +483,14 @@ export default function CV() {
       {/* CTA */}
       <Section variant="surface">
         <Container size="prose" className="text-center">
-          <h2 className="text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
+          <h2 {...reveal()} className="text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
             ¿Conversamos?
           </h2>
-          <p className="mt-4 text-[var(--text-muted)]">
+          <p {...reveal(80)} className="mt-4 text-[var(--text-muted)]">
             Si tienes un proyecto de integración o modernización, me encantaría
             escucharte.
           </p>
-          <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+          <div {...reveal(160)} className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
             <Button href="/contacto" variant="accent">Contactar</Button>
             <Button
               href="https://www.linkedin.com/in/brunojimenezchavez"

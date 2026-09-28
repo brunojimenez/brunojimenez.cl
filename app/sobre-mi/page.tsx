@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import Container from "../components/Container";
 import Section from "../components/Section";
 import ParallaxHeader from "../components/ParallaxHeader";
+import { reveal } from "../lib/reveal";
 import EyebrowLabel from "../components/EyebrowLabel";
 
 export const metadata: Metadata = {
@@ -69,7 +70,7 @@ export default function SobreMi() {
       <Section variant="surface">
         <Container>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-            <div className="space-y-5 text-[var(--text-muted)]">
+            <div {...reveal()} className="space-y-5 text-[var(--text-muted)]">
               <h2 className="text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
                 El hilo de mi carrera
               </h2>
@@ -97,7 +98,7 @@ export default function SobreMi() {
               </p>
             </div>
 
-            <div className="space-y-5 text-[var(--text-muted)]">
+            <div {...reveal(120)} className="space-y-5 text-[var(--text-muted)]">
               <h2 className="text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
                 Cómo trabajo
               </h2>
@@ -124,7 +125,7 @@ export default function SobreMi() {
       {/* 1 columna: principios */}
       <Section>
         <Container>
-          <div className="max-w-3xl">
+          <div {...reveal()} className="max-w-3xl">
             <h2 className="text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
               Lo que me mueve
             </h2>
@@ -138,6 +139,7 @@ export default function SobreMi() {
             {filosofia.map((idea, i) => (
               <li
                 key={idea}
+                {...reveal(i * 80)}
                 className="spotlight rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-elevated)] p-5"
               >
                 <span className="font-mono text-xs font-medium text-[var(--accent)]">
@@ -150,7 +152,7 @@ export default function SobreMi() {
             ))}
           </ul>
 
-          <div className="mt-12 flex flex-col gap-4 sm:flex-row">
+          <div {...reveal()} className="mt-12 flex flex-col gap-4 sm:flex-row">
             <Button href="/cv" variant="accent">Ver mi trayectoria</Button>
             <Button href="/contacto" variant="secondary">
               Contactar

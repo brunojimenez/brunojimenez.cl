@@ -5,6 +5,7 @@ import Card from "../components/Card";
 import Container from "../components/Container";
 import Section from "../components/Section";
 import ParallaxHeader from "../components/ParallaxHeader";
+import { reveal } from "../lib/reveal";
 import EyebrowLabel from "../components/EyebrowLabel";
 
 export const metadata: Metadata = {
@@ -44,6 +45,7 @@ export default function Contacto() {
           <div className="grid gap-6 sm:grid-cols-2">
             {/* Email card */}
             <a
+              {...reveal()}
               href="mailto:hola@brunojimenez.cl"
               className="spotlight group flex flex-col gap-4 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-elevated)] p-6 transition-colors hover:border-[var(--border-hover)]"
             >
@@ -69,6 +71,7 @@ export default function Contacto() {
 
             {/* LinkedIn card */}
             <a
+              {...reveal(120)}
               href="https://www.linkedin.com/in/brunojimenezchavez"
               target="_blank"
               rel="noopener noreferrer"
@@ -100,7 +103,7 @@ export default function Contacto() {
             </a>
           </div>
 
-          <Card className="mt-12 bg-[var(--surface)]">
+          <Card revealDelay={200} className="mt-12 bg-[var(--surface)]">
             <h2 className="font-semibold text-[var(--text-primary)]">
               ¿Qué proyectos me interesan?
             </h2>

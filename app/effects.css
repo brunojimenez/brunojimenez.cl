@@ -138,6 +138,159 @@
   box-shadow: 0 0 16px 3px color-mix(in oklab, #38bdf8 55%, transparent);
 }
 
+/* ------------------------------------------------------------------ */
+/* Apariciones por atributo (app/lib/reveal.ts + RevealObserver)       */
+/* Anima `translate` y no `transform`, así no choca con el hover.       */
+/* ------------------------------------------------------------------ */
+:root[data-js] [data-reveal] {
+  transition:
+    opacity 0.7s ease var(--reveal-delay, 0ms),
+    translate 0.8s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
+    filter 0.7s ease var(--reveal-delay, 0ms),
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+:root[data-js] [data-reveal]:not([data-revealed]) {
+  opacity: 0;
+  translate: 0 18px;
+  filter: blur(6px);
+}
+
+:root[data-js] [data-reveal]:not([data-revealed]) .slot-reel {
+  transform: translateY(0);
+}
+
+/* ------------------------------------------------------------------ */
+/* Diagrama vivo (DiagramaDesarrolloParalelo en /proyectos)             */
+/* ------------------------------------------------------------------ */
+.packet-track {
+  position: relative;
+  width: 1px;
+  height: 2.5rem;
+  background: var(--border);
+}
+
+.packet-track::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  border-radius: 9999px;
+  background: #38bdf8;
+  box-shadow: 0 0 10px 2px color-mix(in oklab, #38bdf8 70%, transparent);
+  animation: packet-down 1.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  animation-delay: var(--packet-delay, 0s);
+}
+
+@keyframes packet-down {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  15%,
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(calc(2.5rem - 6px));
+    opacity: 0;
+  }
+}
+
+/* Indicador de actividad de cada desarrollador */
+.led {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  /* Color fijo: --success solo existe en el tema claro */
+  background: #22c55e;
+  animation: led-blink 1.4s ease-in-out infinite;
+  animation-delay: var(--led-delay, 0s);
+}
+
+@keyframes led-blink {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 8px 1px color-mix(in oklab, #22c55e 70%, transparent);
+  }
+}
+
+/* Etapas del flujo horizontal que se encienden en secuencia */
+.flow-stage {
+  animation: stage-on 4s ease-in-out infinite;
+  animation-delay: calc(var(--stage-i, 0) * 0.6s);
+}
+
+@keyframes stage-on {
+  0%,
+  25%,
+  100% {
+    color: var(--text-secondary);
+    text-shadow: none;
+  }
+  8%,
+  16% {
+    color: #38bdf8;
+    text-shadow: 0 0 12px color-mix(in oklab, #38bdf8 60%, transparent);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Borde con corriente para recuadros destacados                        */
+/* ------------------------------------------------------------------ */
+@property --beam-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.border-beam {
+  position: relative;
+}
+
+.border-beam::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  padding: 2px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--beam-angle),
+    transparent 0%,
+    transparent 58%,
+    color-mix(in oklab, var(--accent) 60%, transparent) 74%,
+    #38bdf8 86%,
+    #e0f2fe 91%,
+    transparent 95%
+  );
+  filter: drop-shadow(0 0 4px color-mix(in oklab, #38bdf8 70%, transparent));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: beam-spin 5s linear infinite;
+}
+
+@keyframes beam-spin {
+  to {
+    --beam-angle: 360deg;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .spotlight:hover {
     transform: none;
@@ -145,5 +298,25 @@
 
   .beam-fill::after {
     animation: none;
+  }
+
+  :root[data-js] [data-reveal]:not([data-revealed]) {
+    opacity: 1;
+    translate: none;
+    filter: none;
+  }
+
+  :root[data-js] [data-reveal]:not([data-revealed]) .slot-reel {
+    transform: translateY(calc(var(--slot-target) * -1em));
+  }
+
+  .packet-track::after,
+  .led,
+  .flow-stage {
+    animation: none;
+  }
+
+  .border-beam::after {
+    display: none;
   }
 }

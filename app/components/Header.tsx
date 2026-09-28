@@ -50,13 +50,13 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--background)]/90 backdrop-blur-md">
       <Container>
         <nav className="flex h-16 items-center justify-between gap-4">
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex min-w-0 items-center gap-3">
             <LogoMark />
-            <div className="flex flex-col">
-              <span className="text-base font-semibold leading-tight tracking-tight text-[var(--text-primary)]">
+            <div className="flex min-w-0 flex-col">
+              <span className="truncate text-base font-semibold leading-tight tracking-tight text-[var(--text-primary)]">
                 Bruno Jiménez
               </span>
-              <span className="font-mono text-[0.6875rem] font-medium uppercase tracking-[0.04em] text-[var(--text-muted)]">
+              <span className="truncate font-mono text-[0.6875rem] font-medium uppercase tracking-[0.04em] text-[var(--text-muted)]">
                 Tech lead · Integración
               </span>
             </div>
@@ -75,11 +75,15 @@ export default function Header() {
             ))}
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
             <ThemeToggle />
-            <Button href="/contacto" variant="accent" className="hidden sm:inline-flex">
-              Hablemos
-            </Button>
+            {/* En móvil "Hablemos" vive en el menú. El envoltorio evita que el
+                inline-flex del botón le gane a "hidden". */}
+            <div className="hidden sm:block">
+              <Button href="/contacto" variant="accent">
+                Hablemos
+              </Button>
+            </div>
 
             {/* Mobile menu button */}
             <button

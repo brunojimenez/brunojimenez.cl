@@ -6,6 +6,7 @@ import "./effects.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import SpotlightTracker from "./components/SpotlightTracker";
+import RevealObserver from "./components/RevealObserver";
 import {
   CONTACT_EMAIL,
   LINKEDIN_URL,
@@ -122,6 +123,7 @@ export default function RootLayout({
           }}
         />
         <SpotlightTracker />
+        <RevealObserver />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

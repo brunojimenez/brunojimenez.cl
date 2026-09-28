@@ -256,7 +256,7 @@ export default function Home() {
       {/* CTA */}
       <Section variant="surface">
         <Container>
-          <Reveal className="rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface-elevated)] p-8 sm:p-12">
+          <Reveal className="border-beam rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface-elevated)] p-8 sm:p-12">
             <div className="mx-auto max-w-2xl text-center">
               <EyebrowLabel className="whitespace-nowrap text-[var(--accent)]">Contacto directo</EyebrowLabel>
               <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-3xl">

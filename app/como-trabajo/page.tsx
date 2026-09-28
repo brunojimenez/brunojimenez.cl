@@ -7,6 +7,7 @@ import Container from "../components/Container";
 import Section from "../components/Section";
 import ParallaxHeader from "../components/ParallaxHeader";
 import TracingBeam from "../components/TracingBeam";
+import { reveal } from "../lib/reveal";
 import EyebrowLabel from "../components/EyebrowLabel";
 
 export const metadata: Metadata = {
@@ -107,7 +108,7 @@ export default function ComoTrabajo() {
       {/* 1. Metodología */}
       <Section variant="surface">
         <Container>
-          <div className="max-w-3xl">
+          <div {...reveal()} className="max-w-3xl">
             <EyebrowLabel className="whitespace-nowrap text-[var(--accent)]">
               01 · Metodología
             </EyebrowLabel>
@@ -124,8 +125,8 @@ export default function ComoTrabajo() {
           </div>
 
           <dl className="mt-8 grid gap-4 sm:grid-cols-3">
-            {metodologia.map((item) => (
-              <Card key={item.titulo}>
+            {metodologia.map((item, i) => (
+              <Card key={item.titulo} revealDelay={i * 100}>
                 <dt className="font-mono text-[0.6875rem] font-medium uppercase tracking-[0.04em] text-[var(--text-muted)]">
                   {item.titulo}
                 </dt>
@@ -136,7 +137,7 @@ export default function ComoTrabajo() {
             ))}
           </dl>
 
-          <p className="mt-6 max-w-3xl text-sm leading-relaxed text-[var(--text-muted)]">
+          <p {...reveal(200)} className="mt-6 max-w-3xl text-sm leading-relaxed text-[var(--text-muted)]">
             Cada iteración entrega un componente maduro y listo para producción,
             mientras el alcance total sigue tomando forma.
           </p>
@@ -146,7 +147,7 @@ export default function ComoTrabajo() {
       {/* 2. Arquetipos */}
       <Section>
         <Container>
-          <div className="max-w-3xl">
+          <div {...reveal()} className="max-w-3xl">
             <EyebrowLabel className="whitespace-nowrap text-[var(--accent)]">
               02 · Estándares
             </EyebrowLabel>
@@ -162,8 +163,8 @@ export default function ComoTrabajo() {
           </div>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {arquetipos.map((a) => (
-              <Card key={a.sigla} hover>
+            {arquetipos.map((a, i) => (
+              <Card key={a.sigla} hover revealDelay={i * 100}>
                 <p className="font-mono text-sm font-semibold text-[var(--accent)]">
                   {a.sigla}
                 </p>
@@ -178,7 +179,7 @@ export default function ComoTrabajo() {
       {/* 3. IA */}
       <Section variant="surface">
         <Container>
-          <div className="max-w-3xl">
+          <div {...reveal()} className="max-w-3xl">
             <EyebrowLabel className="whitespace-nowrap text-[var(--accent)]">
               03 · Desarrollo asistido por IA
             </EyebrowLabel>
@@ -194,8 +195,8 @@ export default function ComoTrabajo() {
 
           <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
             <div className="grid gap-4">
-              {marcoIA.map((item) => (
-                <Card key={item.titulo}>
+              {marcoIA.map((item, i) => (
+                <Card key={item.titulo} revealDelay={i * 100}>
                   <CardTitle className="!text-base">{item.titulo}</CardTitle>
                   <CardDescription>{item.detalle}</CardDescription>
                 </Card>
@@ -203,7 +204,7 @@ export default function ComoTrabajo() {
             </div>
 
             <div className="flex flex-col gap-4">
-              <blockquote className="rounded-[var(--radius-lg)] border border-[var(--accent)] bg-[var(--accent-muted)] p-6 sm:p-8">
+              <blockquote {...reveal(150)} className="border-beam rounded-[var(--radius-lg)] border border-[var(--accent)] bg-[var(--accent-muted)] p-6 sm:p-8">
                 <p className="font-mono text-[0.6875rem] font-medium uppercase tracking-[0.04em] text-[var(--accent)]">
                   Guardarraíles
                 </p>
@@ -218,7 +219,7 @@ export default function ComoTrabajo() {
                 </p>
               </blockquote>
 
-              <div className="rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface-elevated)] p-6">
+              <div {...reveal(250)} className="rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface-elevated)] p-6">
                 <p className="font-mono text-[0.6875rem] font-medium uppercase tracking-[0.04em] text-[var(--text-muted)]">
                   Cómo se aplica
                 </p>
@@ -238,12 +239,12 @@ export default function ComoTrabajo() {
 
       <Section>
         <Container size="prose">
-          <h2 className="mb-8 text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
+          <h2 {...reveal()} className="mb-8 text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
             Proceso típico
           </h2>
 
           <TracingBeam className="space-y-8" lineClassName="left-4">
-            <div data-beam-stop className="flex gap-4">
+            <div {...reveal()} data-beam-stop className="flex gap-4">
               <div className="beam-step relative z-[2] flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-[var(--accent)] font-mono text-sm font-bold text-white">
                 01
               </div>
@@ -261,7 +262,7 @@ export default function ComoTrabajo() {
               </div>
             </div>
 
-            <div data-beam-stop className="flex gap-4">
+            <div {...reveal()} data-beam-stop className="flex gap-4">
               <div className="beam-step relative z-[2] flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-[var(--accent)] font-mono text-sm font-bold text-white">
                 02
               </div>
@@ -277,7 +278,7 @@ export default function ComoTrabajo() {
               </div>
             </div>
 
-            <div data-beam-stop className="flex gap-4">
+            <div {...reveal()} data-beam-stop className="flex gap-4">
               <div className="beam-step relative z-[2] flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-[var(--accent)] font-mono text-sm font-bold text-white">
                 03
               </div>
@@ -293,7 +294,7 @@ export default function ComoTrabajo() {
               </div>
             </div>
 
-            <div data-beam-stop className="flex gap-4">
+            <div {...reveal()} data-beam-stop className="flex gap-4">
               <div className="beam-step relative z-[2] flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-[var(--accent)] font-mono text-sm font-bold text-white">
                 04
               </div>
@@ -314,13 +315,13 @@ export default function ComoTrabajo() {
 
       <Section variant="surface">
         <Container>
-          <h2 className="mb-8 text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
+          <h2 {...reveal()} className="mb-8 text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
             Qué esperar
           </h2>
 
           <div className="grid gap-6 sm:grid-cols-2">
             {/* Destacado con el mismo estilo que el bloque de guardarraíles */}
-            <div className="rounded-[var(--radius-lg)] border border-[var(--accent)] bg-[var(--accent-muted)] p-6 sm:col-span-2 sm:p-8">
+            <div {...reveal()} className="border-beam rounded-[var(--radius-lg)] border border-[var(--accent)] bg-[var(--accent-muted)] p-6 sm:col-span-2 sm:p-8">
               <h3 className="text-xl font-semibold leading-snug tracking-tight text-[var(--text-primary)]">
                 Apoyo permanente al negocio
               </h3>
@@ -331,7 +332,7 @@ export default function ComoTrabajo() {
               </p>
             </div>
 
-            <Card hover>
+            <Card hover revealDelay={0}>
               <CardTitle>Comunicación directa</CardTitle>
               <CardDescription>
                 Conversaciones cortas y frecuentes. Levanto alertas temprano
@@ -339,7 +340,7 @@ export default function ComoTrabajo() {
               </CardDescription>
             </Card>
 
-            <Card hover>
+            <Card hover revealDelay={100}>
               <CardTitle>Foco en producción</CardTitle>
               <CardDescription>
                 Mi objetivo es que cada solución funcione en producción, en el
@@ -347,7 +348,7 @@ export default function ComoTrabajo() {
               </CardDescription>
             </Card>
 
-            <Card hover>
+            <Card hover revealDelay={0}>
               <CardTitle>Transparencia técnica</CardTitle>
               <CardDescription>
                 Explico las opciones técnicas y sus trade-offs. Las decisiones
@@ -355,7 +356,7 @@ export default function ComoTrabajo() {
               </CardDescription>
             </Card>
 
-            <Card hover>
+            <Card hover revealDelay={100}>
               <CardTitle>Compromiso con la calidad</CardTitle>
               <CardDescription>
                 Tests, revisión de código, monitoreo. Las integraciones
@@ -364,7 +365,7 @@ export default function ComoTrabajo() {
               </CardDescription>
             </Card>
 
-            <Card hover className="sm:col-span-2">
+            <Card hover revealDelay={0} className="sm:col-span-2">
               <CardTitle>Conocimiento compartido</CardTitle>
               <CardDescription>
                 Orientación, capacitación y documentación para que el equipo
@@ -381,13 +382,13 @@ export default function ComoTrabajo() {
       {/* CTA */}
       <Section>
         <Container size="prose" className="text-center">
-          <h2 className="text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
+          <h2 {...reveal()} className="text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
             ¿Quieres saber más?
           </h2>
-          <p className="mt-4 text-[var(--text-muted)]">
+          <p {...reveal(80)} className="mt-4 text-[var(--text-muted)]">
             Conversemos sobre tu proyecto y cómo podría ayudarte.
           </p>
-          <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+          <div {...reveal(160)} className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
             <Button href="/contacto" variant="accent">Contactar</Button>
             <Button href="/proyectos" variant="secondary">
               Ver proyectos

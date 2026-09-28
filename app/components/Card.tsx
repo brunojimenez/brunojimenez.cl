@@ -1,14 +1,18 @@
 import { ReactNode } from "react";
+import { reveal } from "../lib/reveal";
 
 interface CardProps {
   children: ReactNode;
   className?: string;
   hover?: boolean;
+  /** Si se indica, la tarjeta aparece al entrar en pantalla con ese retraso (ms). */
+  revealDelay?: number;
 }
 
-export default function Card({ children, className = "", hover = false }: CardProps) {
+export default function Card({ children, className = "", hover = false, revealDelay }: CardProps) {
   return (
     <div
+      {...(revealDelay === undefined ? {} : reveal(revealDelay))}
       className={`spotlight rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-elevated)] p-6 ${
         hover ? "transition-colors hover:border-[var(--text-subtle)]" : ""
       } ${className}`}

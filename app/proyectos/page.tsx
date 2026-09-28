@@ -7,6 +7,9 @@ import Section from "../components/Section";
 import ParallaxHeader from "../components/ParallaxHeader";
 import EyebrowLabel from "../components/EyebrowLabel";
 import Tag from "../components/Tag";
+import SlotNumber from "../components/SlotNumber";
+import { reveal } from "../lib/reveal";
+import type { CSSProperties } from "react";
 
 export const metadata: Metadata = {
   title: "Proyectos",
@@ -30,6 +33,7 @@ interface ProyectoCardProps {
   descripcion: string;
   tecnologias: string[];
   resultado?: string;
+  delay?: number;
 }
 
 function ProyectoCard({
@@ -38,9 +42,10 @@ function ProyectoCard({
   descripcion,
   tecnologias,
   resultado,
+  delay = 0,
 }: ProyectoCardProps) {
   return (
-    <Card hover className="flex flex-col">
+    <Card hover revealDelay={delay} className="flex flex-col">
       <div className="flex-1">
         <EyebrowLabel className="whitespace-nowrap text-[var(--accent)]">{sector}</EyebrowLabel>
         <CardTitle className="mt-2">{titulo}</CardTitle>
@@ -76,27 +81,37 @@ const suscripcionesComponentes = [
 
 const flujoHorizontal = ["Suscripción", "Cobro", "Reintento", "Consumer", "Integraciones"];
 
-function Stat({ value, label }: { value: string; label: string }) {
+function Stat({ value, label, delay = 0 }: { value: string; label: string; delay?: number }) {
   return (
-    <div className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-elevated)] p-4">
+    <div
+      {...reveal(delay)}
+      className="spotlight rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-elevated)] p-4"
+    >
       <dt className="sr-only">{label}</dt>
       <dd className="text-2xl font-semibold tabular-nums tracking-tight text-[var(--text-primary)]">
-        {value}
+        <SlotNumber value={value} />
       </dd>
       <dd className="mt-1 text-sm text-[var(--text-muted)]">{label}</dd>
     </div>
   );
 }
 
-function FlechaAbajo({ etiqueta }: { etiqueta: string }) {
+// Flecha con "paquetes de datos" que bajan en bucle; un carril por flujo.
+function FlechaAbajo({ etiqueta, carriles = 1 }: { etiqueta: string; carriles?: number }) {
   return (
     <div className="flex flex-col items-center py-2 text-[var(--text-subtle)]" aria-hidden="true">
       <span className="font-mono text-[0.6875rem] uppercase tracking-[0.04em]">
         {etiqueta}
       </span>
-      <svg className="mt-1 h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m0 0l6.75-6.75M12 19.5l-6.75-6.75" />
-      </svg>
+      <div className="mt-2 flex gap-8">
+        {Array.from({ length: carriles }, (_, i) => (
+          <div
+            key={i}
+            className="packet-track"
+            style={{ "--packet-delay": `${i * 0.35}s` } as CSSProperties}
+          />
+        ))}
+      </div>
     </div>
   );
 }
@@ -115,8 +130,13 @@ function DiagramaDesarrolloParalelo() {
             key={n}
             className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-3"
           >
-            <p className="font-mono text-xs font-medium text-[var(--text-primary)]">
+            <p className="flex items-center justify-between font-mono text-xs font-medium text-[var(--text-primary)]">
               Dev {n}
+              <span
+                aria-hidden="true"
+                className="led"
+                style={{ "--led-delay": `${n * 0.3}s` } as CSSProperties}
+              />
             </p>
             <p className="mt-1 text-xs leading-snug text-[var(--text-muted)]">
               Su parte del consumer + endpoint REST de pruebas privado
@@ -125,7 +145,7 @@ function DiagramaDesarrolloParalelo() {
         ))}
       </div>
 
-      <FlechaAbajo etiqueta="contratos" />
+      <FlechaAbajo etiqueta="contratos" carriles={4} />
 
       <div className="rounded-[var(--radius-md)] border border-[var(--accent)] bg-[var(--accent-muted)] p-4 text-center">
         <p className="text-sm font-semibold text-[var(--text-primary)]">
@@ -145,13 +165,17 @@ function DiagramaDesarrolloParalelo() {
       <div className="mt-3 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-4">
         <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs text-[var(--text-secondary)]">
           {flujoHorizontal.map((etapa, i) => (
-            <li key={etapa} className="flex items-center gap-2">
+            <li
+              key={etapa}
+              className="flex items-center gap-2"
+              style={{ "--stage-i": i } as CSSProperties}
+            >
               {i > 0 && (
                 <span aria-hidden="true" className="text-[var(--text-subtle)]">
                   →
                 </span>
               )}
-              {etapa}
+              <span className="flow-stage">{etapa}</span>
             </li>
           ))}
         </ol>
@@ -190,7 +214,7 @@ export default function Proyectos() {
       {/* Casos destacados */}
       <Section variant="surface" id="cobro-suscripciones">
         <Container>
-          <div className="max-w-3xl">
+          <div {...reveal()} className="max-w-3xl">
             <EyebrowLabel className="whitespace-nowrap text-[var(--accent)]">
               Caso destacado · WOM
             </EyebrowLabel>
@@ -207,13 +231,13 @@ export default function Proyectos() {
           </div>
 
           <dl className="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
-            {suscripcionesStats.map((stat) => (
-              <Stat key={stat.label} {...stat} />
+            {suscripcionesStats.map((stat, i) => (
+              <Stat key={stat.label} {...stat} delay={i * 100} />
             ))}
           </dl>
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
-            <div className="space-y-6">
+            <div {...reveal()} className="space-y-6">
               <div>
                 <h3 className="text-lg font-semibold text-[var(--text-primary)]">
                   El sistema
@@ -251,7 +275,9 @@ export default function Proyectos() {
                 </p>
               </div>
             </div>
-            <DiagramaDesarrolloParalelo />
+            <div {...reveal(150)}>
+              <DiagramaDesarrolloParalelo />
+            </div>
           </div>
         </Container>
       </Section>
@@ -259,7 +285,7 @@ export default function Proyectos() {
       <Section id="uat-cambio-contrato">
         <Container>
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:items-start">
-            <div className="max-w-3xl">
+            <div {...reveal()} className="max-w-3xl">
               <EyebrowLabel className="whitespace-nowrap text-[var(--accent)]">
                 Caso · WOM
               </EyebrowLabel>
@@ -280,8 +306,8 @@ export default function Proyectos() {
             </div>
             <dl className="grid grid-cols-3 gap-3">
               <Stat value="3" label="días" />
-              <Stat value="3" label="cambios de contrato" />
-              <Stat value="A tiempo" label="ventana de UAT cumplida" />
+              <Stat value="3" label="cambios de contrato" delay={100} />
+              <Stat value="A tiempo" label="ventana de UAT cumplida" delay={200} />
             </dl>
           </div>
         </Container>
@@ -289,16 +315,17 @@ export default function Proyectos() {
 
       <Section variant="surface">
         <Container>
-          <h2 className="mb-2 text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
+          <h2 {...reveal()} className="mb-2 text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
             Migraciones y plataformas
           </h2>
-          <p className="mb-8 text-[var(--text-muted)]">
+          <p {...reveal(80)} className="mb-8 text-[var(--text-muted)]">
             Migraciones de servidores de aplicaciones y portales, y evaluación
             de plataformas.
           </p>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <ProyectoCard
+              delay={0}
               titulo="Migración BCI a Red Hat JBoss EAP"
               sector="Banca"
               descripcion="Migración de aplicaciones críticas desde Oracle WebLogic a Red Hat JBoss EAP, incluyendo reconfiguración de datasources, seguridad y clustering."
@@ -308,6 +335,7 @@ export default function Proyectos() {
 
 
             <ProyectoCard
+              delay={100}
               titulo="Sitios de JUNAEB a Liferay DXP"
               sector="Sector público"
               descripcion="Migración de los sitios de JUNAEB a la plataforma Liferay DXP."
@@ -315,6 +343,7 @@ export default function Proyectos() {
             />
 
             <ProyectoCard
+              delay={200}
               titulo="Transbank: motor de reglas"
               sector="Servicios financieros"
               descripcion="Prueba de concepto de Red Hat Decision Manager (BRMS) para Transbank."
@@ -326,15 +355,16 @@ export default function Proyectos() {
 
       <Section>
         <Container>
-          <h2 className="mb-2 text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
+          <h2 {...reveal()} className="mb-2 text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
             Integración de sistemas
           </h2>
-          <p className="mb-8 text-[var(--text-muted)]">
+          <p {...reveal(80)} className="mb-8 text-[var(--text-muted)]">
             Proyectos de integración entre sistemas heterogéneos.
           </p>
 
           <div className="grid gap-6 sm:grid-cols-2">
             <ProyectoCard
+              delay={0}
               titulo="Plataforma de integración on premise y cloud"
               sector="Telecomunicaciones"
               descripcion="Microservicios de integración de WOM en dos entornos con la misma capacidad: OpenShift, Kafka y MongoDB on premise; EKS, SQS y MongoDB Atlas en AWS."
@@ -342,6 +372,7 @@ export default function Proyectos() {
             />
 
             <ProyectoCard
+              delay={100}
               titulo="Carrier billing: Netflix, Spotify y Boku"
               sector="Telecomunicaciones"
               descripcion="Integración de WOM con plataformas de contenido para cobrar suscripciones en la boleta del celular. Primer proyecto en WOM, como externo vía SEnTRA."
@@ -349,6 +380,7 @@ export default function Proyectos() {
             />
 
             <ProyectoCard
+              delay={200}
               titulo="MINVU Conecta"
               sector="Sector público"
               descripcion="App móvil del ministerio, de punta a punta: app Ionic/Cordova, MBaaS en Red Hat Mobile Application Platform y backend Fuse con servicios REST y SOAP. En el entorno de Red Hat Chile, como contratista de SEnTRA."
@@ -356,6 +388,7 @@ export default function Proyectos() {
             />
 
             <ProyectoCard
+              delay={0}
               titulo="Tarjeta Cruz Verde: sitio de clientes"
               sector="Retail"
               descripcion="Sitio de clientes sobre Liferay 6.1, integrado con los sistemas de la tarjeta mediante Apache ServiceMix."
@@ -369,15 +402,15 @@ export default function Proyectos() {
 
       <Section variant="surface">
         <Container>
-          <h2 className="mb-2 text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
+          <h2 {...reveal()} className="mb-2 text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
             Arquitectura y diseño
           </h2>
-          <p className="mb-8 text-[var(--text-muted)]">
+          <p {...reveal(80)} className="mb-8 text-[var(--text-muted)]">
             Proyectos de diseño de arquitectura y patrones de integración.
           </p>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <Card hover>
+            <Card hover revealDelay={0}>
               <CardTitle as="h3">Anti-Corruption Layer</CardTitle>
               <CardDescription>
                 Implementación del patrón Anti-Corruption Layer (Eric Evans,
@@ -386,7 +419,7 @@ export default function Proyectos() {
               </CardDescription>
             </Card>
 
-            <Card hover>
+            <Card hover revealDelay={100}>
               <CardTitle as="h3">Event-Driven Architecture</CardTitle>
               <CardDescription>
                 Diseño de arquitecturas basadas en eventos con Kafka para
@@ -394,7 +427,7 @@ export default function Proyectos() {
               </CardDescription>
             </Card>
 
-            <Card hover>
+            <Card hover revealDelay={200}>
               <CardTitle as="h3">API Gateway</CardTitle>
               <CardDescription>
                 Implementación de gateways de API para unificar acceso a
@@ -408,7 +441,7 @@ export default function Proyectos() {
       {/* CTA */}
       <Section>
         <Container>
-          <div className="rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface-elevated)] p-8 sm:p-12">
+          <div {...reveal()} className="border-beam rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface-elevated)] p-8 sm:p-12">
             <div className="flex flex-col items-center gap-6 md:flex-row md:items-center md:justify-between">
               <div className="flex-1 min-w-0 text-center md:text-left">
                 <EyebrowLabel className="text-[var(--accent)]">¿Tienes un proyecto similar?</EyebrowLabel>
