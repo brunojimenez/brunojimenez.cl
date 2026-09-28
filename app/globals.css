@@ -1,6 +1,12 @@
 @import "tailwindcss";
 
-:root {
+/* El tema oscuro es el predeterminado; el claro se activa con data-theme="light"
+   en <html> (lo fija el script de app/layout.tsx y el botón ThemeToggle). */
+@custom-variant dark (&:where(:root:not([data-theme="light"]), :root:not([data-theme="light"]) *));
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
   /* Canvas & Surface */
   --background: #fafafa;
   --foreground: #09090b;
@@ -41,36 +47,36 @@
   --inverse-muted: #a1a1aa;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #09090b;
-    --foreground: #fafafa;
-    --surface: #18181b;
-    --surface-elevated: #27272a;
-    --surface-muted: #18181b;
+:root {
+  color-scheme: dark;
 
-    --text-primary: #fafafa;
-    --text-secondary: #e4e4e7;
-    --text-muted: #a1a1aa;
-    --text-subtle: #71717a;
+  --background: #09090b;
+  --foreground: #fafafa;
+  --surface: #18181b;
+  --surface-elevated: #27272a;
+  --surface-muted: #18181b;
 
-    --border: #27272a;
-    --border-hover: #3f3f46;
-    --border-focus: #3b82f6;
+  --text-primary: #fafafa;
+  --text-secondary: #e4e4e7;
+  --text-muted: #a1a1aa;
+  --text-subtle: #71717a;
 
-    --accent: #3b82f6;
-    --accent-hover: #2563eb;
-    --accent-muted: rgba(59, 130, 246, 0.1);
-    --accent-foreground: #ffffff;
+  --border: #27272a;
+  --border-hover: #3f3f46;
+  --border-focus: #3b82f6;
 
-    --button-primary-bg: #fafafa;
-    --button-primary-hover: #e4e4e7;
-    --button-primary-text: #09090b;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --accent-muted: rgba(59, 130, 246, 0.1);
+  --accent-foreground: #ffffff;
 
-    --inverse-bg: #fafafa;
-    --inverse-text: #09090b;
-    --inverse-muted: #71717a;
-  }
+  --button-primary-bg: #fafafa;
+  --button-primary-hover: #e4e4e7;
+  --button-primary-text: #09090b;
+
+  --inverse-bg: #fafafa;
+  --inverse-text: #09090b;
+  --inverse-muted: #71717a;
 }
 
 @theme inline {
@@ -129,3 +135,139 @@ body {
 .tabular-nums {
   font-variant-numeric: tabular-nums;
 }
+
+/* Banner rotatorio de clientes (app/components/ClientMarquee.tsx) */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee-track {
+  animation: marquee-scroll 45s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Con movimiento reducido: lista estática que se reparte en varias líneas */
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    mask-image: none;
+    padding-inline: 1rem;
+  }
+
+  .marquee-track {
+    animation: none;
+    width: auto;
+  }
+
+  .marquee-group {
+    flex-wrap: wrap;
+    row-gap: 0.75rem;
+    padding-right: 0;
+  }
+
+  .marquee-group[aria-hidden="true"] {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Apariciones al hacer scroll (app/components/Reveal.tsx)             */
+/* Solo se ocultan si hay JS (html[data-js], lo fija app/layout.tsx).  */
+/* ------------------------------------------------------------------ */
+:root[data-js] .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(6px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.7s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+:root[data-js] .reveal[data-revealed] {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* Entrada del hero al cargar: CSS puro, sin esperar a JavaScript */
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+.hero-in {
+  animation: hero-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--hero-delay, 0ms);
+}
+
+/* ------------------------------------------------------------------ */
+/* Números estilo odómetro (app/components/SlotNumber.tsx)             */
+/* ------------------------------------------------------------------ */
+.slot {
+  display: inline-flex;
+  line-height: 1;
+}
+
+.slot-digit {
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+}
+
+.slot-reel {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(calc(var(--slot-target) * -1em));
+  transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--reveal-delay, 0ms) + var(--slot-i, 0) * 90ms + 150ms);
+}
+
+.slot-reel > span {
+  height: 1em;
+}
+
+/* Antes de aparecer, el carrete parte en 0 */
+:root[data-js] .reveal:not([data-revealed]) .slot-reel {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-js] .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+
+  .hero-in {
+    animation: none;
+  }
+
+  .slot-reel,
+  :root[data-js] .reveal:not([data-revealed]) .slot-reel {
+    transform: translateY(calc(var(--slot-target) * -1em));
+    transition: none;
+  }
+}
+

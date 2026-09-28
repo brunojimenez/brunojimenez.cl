@@ -1,44 +1,53 @@
 import type { Metadata } from "next";
+import { openGraphBase } from "../lib/site";
 import Link from "next/link";
 import Card from "../components/Card";
 import Container from "../components/Container";
 import Section from "../components/Section";
+import ParallaxHeader from "../components/ParallaxHeader";
+import { reveal } from "../lib/reveal";
 import EyebrowLabel from "../components/EyebrowLabel";
 
 export const metadata: Metadata = {
   title: "Contacto",
   description:
-    "Contacta a Bruno Jiménez para proyectos de integración de sistemas, modernización de plataformas y arquitectura de software.",
+    "Contacta a Bruno Jiménez para proyectos de integración, modernización, arquitectura de software, nuevos desarrollos backend y Agentic Coding.",
   alternates: {
     canonical: "/contacto",
   },
   openGraph: {
+    ...openGraphBase,
     title: "Contacto | Bruno Jiménez",
     description:
       "Contacta a Bruno Jiménez para proyectos de integración de sistemas y modernización de plataformas.",
-    url: "https://brunojimenez.cl/contacto",
+    url: "/contacto",
   },
 };
 
 export default function Contacto() {
   return (
     <div className="flex flex-col">
-      <Section>
+      <ParallaxHeader diseno="orbitas" className="py-14 sm:py-24">
         <Container size="prose">
           <EyebrowLabel className="whitespace-nowrap">Hablemos</EyebrowLabel>
           <h1 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-4xl">
-            ¿Tienes un desafío de integración o arquitectura?
+            Conversemos sobre tu próximo proyecto
           </h1>
           <p className="mt-4 text-lg leading-relaxed text-[var(--text-muted)]">
-            Si tienes sistemas que necesitan integrarse o modernizarse, me
-            encantaría escuchar sobre tu proyecto.
+            Integración, modernización, arquitectura o un desarrollo nuevo: me
+            encantaría conocer tu proyecto.
           </p>
+        </Container>
+      </ParallaxHeader>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
+      <Section>
+        <Container size="prose">
+          <div className="grid gap-6 sm:grid-cols-2">
             {/* Email card */}
             <a
+              {...reveal()}
               href="mailto:hola@brunojimenez.cl"
-              className="group flex flex-col gap-4 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-elevated)] p-6 transition-colors hover:border-[var(--border-hover)]"
+              className="spotlight group flex flex-col gap-4 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-elevated)] p-6 transition-colors hover:border-[var(--border-hover)]"
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-[var(--radius-sm)] bg-[var(--accent)] text-white">
                 <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
@@ -62,10 +71,11 @@ export default function Contacto() {
 
             {/* LinkedIn card */}
             <a
+              {...reveal(120)}
               href="https://www.linkedin.com/in/brunojimenezchavez"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col gap-4 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-elevated)] p-6 transition-colors hover:border-[var(--border-hover)]"
+              className="spotlight group flex flex-col gap-4 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-elevated)] p-6 transition-colors hover:border-[var(--border-hover)]"
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-[var(--radius-sm)] bg-[var(--surface)] text-[#0A66C2]">
                 <svg
@@ -93,7 +103,7 @@ export default function Contacto() {
             </a>
           </div>
 
-          <Card className="mt-12 bg-[var(--surface)]">
+          <Card revealDelay={200} className="mt-12 bg-[var(--surface)]">
             <h2 className="font-semibold text-[var(--text-primary)]">
               ¿Qué proyectos me interesan?
             </h2>
@@ -101,20 +111,21 @@ export default function Contacto() {
               <li className="flex items-start gap-2">
                 <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-[var(--accent)]" />
                 <span>
-                  Empresas con sistemas en producción que necesitan integrarse o
-                  modernizarse
+                  Integración de sistemas y plataformas: APIs, eventos y
+                  mensajería
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-[var(--accent)]" />
                 <span>
-                  Proyectos de integración empresarial (APIs, eventos, colas)
+                  Modernización y migración a microservicios y cloud
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-[var(--accent)]" />
                 <span>
-                  Migraciones de plataformas legacy a arquitecturas modernas
+                  Nuevos desarrollos backend y adopción de Agentic Coding en
+                  equipos
                 </span>
               </li>
             </ul>

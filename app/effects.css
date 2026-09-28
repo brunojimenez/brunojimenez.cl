@@ -1,0 +1,322 @@
+/* ------------------------------------------------------------------ */
+/* Spotlight al pasar el mouse por los recuadros                        */
+/* (--mx / --my los fija app/components/SpotlightTracker.tsx)           */
+/* ------------------------------------------------------------------ */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+
+@media (hover: hover) {
+  .spotlight {
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  .spotlight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: radial-gradient(
+      360px circle at var(--mx, 50%) var(--my, 50%),
+      color-mix(in oklab, var(--accent) 18%, transparent),
+      transparent 45%
+    );
+  }
+
+  .spotlight:hover::before {
+    opacity: 1;
+  }
+
+  .spotlight:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in oklab, var(--accent) 50%, var(--border));
+    box-shadow: 0 14px 34px -16px color-mix(in oklab, var(--accent) 50%, transparent);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Barra de progreso de lectura (app/components/ScrollProgress.tsx)    */
+/* ------------------------------------------------------------------ */
+.scroll-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  transform-origin: left;
+  transform: scaleX(var(--progress, 0));
+  background: linear-gradient(90deg, var(--accent), #38bdf8, #a78bfa);
+  box-shadow: 0 0 12px color-mix(in oklab, var(--accent) 60%, transparent);
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------------ */
+/* Corriente que recorre una línea al hacer scroll                     */
+/* (app/components/TracingBeam.tsx fija --beam entre 0 y 1)            */
+/* ------------------------------------------------------------------ */
+.beam {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 2px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.beam::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+  background: var(--border);
+}
+
+.beam-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(var(--beam, 0) * 100%);
+  opacity: clamp(0, calc(var(--beam, 0) * 25), 1);
+  border-radius: 2px;
+  background: linear-gradient(to bottom, transparent, var(--accent) 18%, #38bdf8);
+  box-shadow: 0 0 10px color-mix(in oklab, var(--accent) 60%, transparent);
+}
+
+/* La "cabeza" brillante de la corriente */
+.beam-fill::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 10px;
+  height: 10px;
+  transform: translateX(-50%);
+  border-radius: 9999px;
+  background: #e0f2fe;
+  box-shadow:
+    0 0 0 3px color-mix(in oklab, var(--accent) 45%, transparent),
+    0 0 18px 4px color-mix(in oklab, #38bdf8 70%, transparent);
+  animation: beam-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes beam-pulse {
+  50% {
+    box-shadow:
+      0 0 0 6px color-mix(in oklab, var(--accent) 25%, transparent),
+      0 0 26px 8px color-mix(in oklab, #38bdf8 55%, transparent);
+  }
+}
+
+/* Hitos que la corriente ya alcanzó */
+.beam-dot,
+.beam-step {
+  transition:
+    border-color 0.4s ease,
+    background-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+[data-lit] > .beam-dot {
+  border-color: var(--accent);
+  background-color: var(--accent);
+  box-shadow: 0 0 12px 2px color-mix(in oklab, var(--accent) 60%, transparent);
+}
+
+[data-lit] > .beam-step {
+  box-shadow: 0 0 16px 3px color-mix(in oklab, #38bdf8 55%, transparent);
+}
+
+/* ------------------------------------------------------------------ */
+/* Apariciones por atributo (app/lib/reveal.ts + RevealObserver)       */
+/* Anima `translate` y no `transform`, así no choca con el hover.       */
+/* ------------------------------------------------------------------ */
+:root[data-js] [data-reveal] {
+  transition:
+    opacity 0.7s ease var(--reveal-delay, 0ms),
+    translate 0.8s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
+    filter 0.7s ease var(--reveal-delay, 0ms),
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+:root[data-js] [data-reveal]:not([data-revealed]) {
+  opacity: 0;
+  translate: 0 18px;
+  filter: blur(6px);
+}
+
+:root[data-js] [data-reveal]:not([data-revealed]) .slot-reel {
+  transform: translateY(0);
+}
+
+/* ------------------------------------------------------------------ */
+/* Diagrama vivo (DiagramaDesarrolloParalelo en /proyectos)             */
+/* ------------------------------------------------------------------ */
+.packet-track {
+  position: relative;
+  width: 1px;
+  height: 2.5rem;
+  background: var(--border);
+}
+
+.packet-track::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  border-radius: 9999px;
+  background: #38bdf8;
+  box-shadow: 0 0 10px 2px color-mix(in oklab, #38bdf8 70%, transparent);
+  animation: packet-down 1.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  animation-delay: var(--packet-delay, 0s);
+}
+
+@keyframes packet-down {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  15%,
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(calc(2.5rem - 6px));
+    opacity: 0;
+  }
+}
+
+/* Indicador de actividad de cada desarrollador */
+.led {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  /* Color fijo: --success solo existe en el tema claro */
+  background: #22c55e;
+  animation: led-blink 1.4s ease-in-out infinite;
+  animation-delay: var(--led-delay, 0s);
+}
+
+@keyframes led-blink {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 8px 1px color-mix(in oklab, #22c55e 70%, transparent);
+  }
+}
+
+/* Etapas del flujo horizontal que se encienden en secuencia */
+.flow-stage {
+  animation: stage-on 4s ease-in-out infinite;
+  animation-delay: calc(var(--stage-i, 0) * 0.6s);
+}
+
+@keyframes stage-on {
+  0%,
+  25%,
+  100% {
+    color: var(--text-secondary);
+    text-shadow: none;
+  }
+  8%,
+  16% {
+    color: #38bdf8;
+    text-shadow: 0 0 12px color-mix(in oklab, #38bdf8 60%, transparent);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Borde con corriente para recuadros destacados                        */
+/* ------------------------------------------------------------------ */
+@property --beam-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.border-beam {
+  position: relative;
+}
+
+.border-beam::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  padding: 2px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--beam-angle),
+    transparent 0%,
+    transparent 58%,
+    color-mix(in oklab, var(--accent) 60%, transparent) 74%,
+    #38bdf8 86%,
+    #e0f2fe 91%,
+    transparent 95%
+  );
+  filter: drop-shadow(0 0 4px color-mix(in oklab, #38bdf8 70%, transparent));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: beam-spin 5s linear infinite;
+}
+
+@keyframes beam-spin {
+  to {
+    --beam-angle: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spotlight:hover {
+    transform: none;
+  }
+
+  .beam-fill::after {
+    animation: none;
+  }
+
+  :root[data-js] [data-reveal]:not([data-revealed]) {
+    opacity: 1;
+    translate: none;
+    filter: none;
+  }
+
+  :root[data-js] [data-reveal]:not([data-revealed]) .slot-reel {
+    transform: translateY(calc(var(--slot-target) * -1em));
+  }
+
+  .packet-track::after,
+  .led,
+  .flow-stage {
+    animation: none;
+  }
+
+  .border-beam::after {
+    display: none;
+  }
+}

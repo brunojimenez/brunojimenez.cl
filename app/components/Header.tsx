@@ -4,14 +4,15 @@ import Link from "next/link";
 import { useState } from "react";
 import Button from "./Button";
 import Container from "./Container";
+import ThemeToggle from "./ThemeToggle";
+import ScrollProgress from "./ScrollProgress";
 
+// Inicio va en el logo y Contacto en el botón "Hablemos": la nav queda en 4 enlaces.
 const navLinks = [
-  { href: "/", label: "Inicio" },
-  { href: "/sobre-mi", label: "Sobre mí" },
-  { href: "/cv", label: "Trayectoria" },
   { href: "/proyectos", label: "Proyectos" },
   { href: "/como-trabajo", label: "Cómo trabajo" },
-  { href: "/contacto", label: "Contacto" },
+  { href: "/cv", label: "Trayectoria" },
+  { href: "/sobre-mi", label: "Sobre mí" },
 ];
 
 function LogoMark() {
@@ -49,14 +50,14 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--background)]/90 backdrop-blur-md">
       <Container>
         <nav className="flex h-16 items-center justify-between gap-4">
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex min-w-0 items-center gap-3">
             <LogoMark />
-            <div className="flex flex-col">
-              <span className="text-base font-semibold leading-tight tracking-tight text-[var(--text-primary)]">
+            <div className="flex min-w-0 flex-col">
+              <span className="truncate text-base font-semibold leading-tight tracking-tight text-[var(--text-primary)]">
                 Bruno Jiménez
               </span>
-              <span className="font-mono text-[0.6875rem] font-medium uppercase tracking-[0.04em] text-[var(--text-muted)]">
-                Backend e integración
+              <span className="truncate font-mono text-[0.6875rem] font-medium uppercase tracking-[0.04em] text-[var(--text-muted)]">
+                Tech lead · Integración
               </span>
             </div>
           </Link>
@@ -74,10 +75,15 @@ export default function Header() {
             ))}
           </div>
 
-          <div className="flex items-center gap-3">
-            <Button href="/contacto" variant="accent" className="hidden sm:inline-flex">
-              Hablemos
-            </Button>
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+            <ThemeToggle />
+            {/* En móvil "Hablemos" vive en el menú. El envoltorio evita que el
+                inline-flex del botón le gane a "hidden". */}
+            <div className="hidden sm:block">
+              <Button href="/contacto" variant="accent">
+                Hablemos
+              </Button>
+            </div>
 
             {/* Mobile menu button */}
             <button
@@ -141,6 +147,7 @@ export default function Header() {
           </Container>
         </div>
       )}
+      <ScrollProgress />
     </header>
   );
 }
