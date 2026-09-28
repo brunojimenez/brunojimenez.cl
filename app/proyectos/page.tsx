@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import Card, { CardTitle, CardDescription } from "../components/Card";
 import Container from "../components/Container";
 import Section from "../components/Section";
+import ParallaxHeader from "../components/ParallaxHeader";
 import EyebrowLabel from "../components/EyebrowLabel";
 import Tag from "../components/Tag";
 
@@ -171,7 +172,7 @@ function DiagramaDesarrolloParalelo() {
 export default function Proyectos() {
   return (
     <div className="flex flex-col">
-      <Section>
+      <ParallaxHeader diseno="circuito" className="py-14 sm:py-24">
         <Container>
           <div className="max-w-2xl">
             <EyebrowLabel>Casos de estudio</EyebrowLabel>
@@ -184,7 +185,7 @@ export default function Proyectos() {
             </p>
           </div>
         </Container>
-      </Section>
+      </ParallaxHeader>
 
       {/* Casos destacados */}
       <Section variant="surface" id="cobro-suscripciones">

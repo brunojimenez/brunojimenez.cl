@@ -5,6 +5,7 @@ import { useState } from "react";
 import Button from "./Button";
 import Container from "./Container";
 import ThemeToggle from "./ThemeToggle";
+import ScrollProgress from "./ScrollProgress";
 
 // Inicio va en el logo y Contacto en el botón "Hablemos": la nav queda en 4 enlaces.
 const navLinks = [
@@ -142,6 +143,7 @@ export default function Header() {
           </Container>
         </div>
       )}
+      <ScrollProgress />
     </header>
   );
 }

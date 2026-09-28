@@ -5,6 +5,8 @@ import Button from "../components/Button";
 import Card, { CardTitle, CardDescription, CardFooter } from "../components/Card";
 import Container from "../components/Container";
 import Section from "../components/Section";
+import ParallaxHeader from "../components/ParallaxHeader";
+import TracingBeam from "../components/TracingBeam";
 import EyebrowLabel from "../components/EyebrowLabel";
 
 export const metadata: Metadata = {
@@ -85,7 +87,7 @@ const estadoIA = [
 export default function ComoTrabajo() {
   return (
     <div className="flex flex-col">
-      <Section>
+      <ParallaxHeader diseno="orbitas" className="py-14 sm:py-24">
         <Container>
           <div className="max-w-3xl">
           <EyebrowLabel className="whitespace-nowrap">Metodología</EyebrowLabel>
@@ -100,7 +102,7 @@ export default function ComoTrabajo() {
           </p>
           </div>
         </Container>
-      </Section>
+      </ParallaxHeader>
 
       {/* 1. Metodología */}
       <Section variant="surface">
@@ -240,9 +242,9 @@ export default function ComoTrabajo() {
             Proceso típico
           </h2>
 
-          <div className="space-y-8">
-            <div className="flex gap-4">
-              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-[var(--accent)] font-mono text-sm font-bold text-white">
+          <TracingBeam className="space-y-8" lineClassName="left-4">
+            <div data-beam-stop className="flex gap-4">
+              <div className="beam-step relative z-[2] flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-[var(--accent)] font-mono text-sm font-bold text-white">
                 01
               </div>
               <div>
@@ -259,8 +261,8 @@ export default function ComoTrabajo() {
               </div>
             </div>
 
-            <div className="flex gap-4">
-              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-[var(--accent)] font-mono text-sm font-bold text-white">
+            <div data-beam-stop className="flex gap-4">
+              <div className="beam-step relative z-[2] flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-[var(--accent)] font-mono text-sm font-bold text-white">
                 02
               </div>
               <div>
@@ -275,8 +277,8 @@ export default function ComoTrabajo() {
               </div>
             </div>
 
-            <div className="flex gap-4">
-              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-[var(--accent)] font-mono text-sm font-bold text-white">
+            <div data-beam-stop className="flex gap-4">
+              <div className="beam-step relative z-[2] flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-[var(--accent)] font-mono text-sm font-bold text-white">
                 03
               </div>
               <div>
@@ -291,8 +293,8 @@ export default function ComoTrabajo() {
               </div>
             </div>
 
-            <div className="flex gap-4">
-              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-[var(--accent)] font-mono text-sm font-bold text-white">
+            <div data-beam-stop className="flex gap-4">
+              <div className="beam-step relative z-[2] flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-[var(--accent)] font-mono text-sm font-bold text-white">
                 04
               </div>
               <div>
@@ -306,7 +308,7 @@ export default function ComoTrabajo() {
                 </p>
               </div>
             </div>
-          </div>
+          </TracingBeam>
         </Container>
       </Section>
 

@@ -3,6 +3,7 @@ import { openGraphBase } from "../lib/site";
 import Link from "next/link";
 import Container from "../components/Container";
 import Section from "../components/Section";
+import ParallaxHeader from "../components/ParallaxHeader";
 import EyebrowLabel from "../components/EyebrowLabel";
 
 export const metadata: Metadata = {
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
 export default function Privacidad() {
   return (
     <div className="flex flex-col">
-      <Section>
+      <ParallaxHeader diseno="circuito" className="py-14 sm:py-24">
         <Container>
           <div className="max-w-2xl">
             <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
@@ -41,8 +42,12 @@ export default function Privacidad() {
               Última actualización: septiembre 2026
             </p>
           </div>
+        </Container>
+      </ParallaxHeader>
 
-          <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-12">
+      <Section>
+        <Container>
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
             {/* Sidebar - Table of Contents */}
             <aside className="lg:col-span-4">
               <div className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-elevated)] p-4 lg:sticky lg:top-24">

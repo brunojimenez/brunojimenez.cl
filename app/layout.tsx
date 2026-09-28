@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import "./effects.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import SpotlightTracker from "./components/SpotlightTracker";
 import {
   CONTACT_EMAIL,
   LINKEDIN_URL,
@@ -57,7 +59,9 @@ export const metadata: Metadata = {
 };
 
 // Corre antes del primer pintado para aplicar el tema guardado sin parpadeo.
-const themeScript = `try{if(localStorage.getItem(${JSON.stringify(
+// También marca data-js para que las animaciones de aparición solo oculten
+// contenido cuando hay JavaScript.
+const themeScript = `document.documentElement.dataset.js="";try{if(localStorage.getItem(${JSON.stringify(
   THEME_STORAGE_KEY
 )})==="light")document.documentElement.dataset.theme="light"}catch(e){}`;
 
@@ -117,6 +121,7 @@ export default function RootLayout({
             __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c"),
           }}
         />
+        <SpotlightTracker />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

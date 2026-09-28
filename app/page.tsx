@@ -1,11 +1,16 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./components/Button";
 import Card, { CardTitle, CardDescription, CardFooter } from "./components/Card";
 import Container from "./components/Container";
 import Section from "./components/Section";
+import ParallaxHeader from "./components/ParallaxHeader";
 import EyebrowLabel from "./components/EyebrowLabel";
 import Tag from "./components/Tag";
+import ClientMarquee from "./components/ClientMarquee";
+import Reveal from "./components/Reveal";
+import SlotNumber from "./components/SlotNumber";
 
 const credentials = [
   { value: "25", label: "años de trayectoria" },
@@ -28,10 +33,9 @@ const clients = [
   "Netflix",
   "Spotify",
   "Boku",
+  "Grupo Santander",
+  "Nestlé",
 ];
-
-// Clientes de los primeros años: van al final y con menos peso visual.
-const earlierClients = ["Grupo Santander", "Nestlé", "El Mercurio"];
 
 const caseStats = [
   { value: "< 2 meses", label: "del día cero a producción" },
@@ -44,11 +48,11 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero */}
-      <Section className="!pb-6">
+      <ParallaxHeader diseno="red" className="py-12 sm:py-20 !pb-10">
         <Container>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-center lg:gap-16">
             <div className="max-w-3xl">
-              <div className="flex items-center gap-4">
+              <div className="hero-in flex items-center gap-4" style={{ "--hero-delay": "0ms" } as CSSProperties}>
                 <Image
                   src="/images/profile.webp"
                   alt=""
@@ -61,16 +65,16 @@ export default function Home() {
                   Bruno Jiménez · Rancagua, Chile
                 </EyebrowLabel>
               </div>
-              <h1 className="mt-3 text-4xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-[3.5rem] lg:leading-[1.08]">
+              <h1 style={{ "--hero-delay": "90ms" } as CSSProperties} className="hero-in mt-3 text-4xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-[3.5rem] lg:leading-[1.08]">
                 Liderazgo técnico en backend e integración.
               </h1>
-              <p className="mt-6 text-lg leading-relaxed text-[var(--text-muted)] sm:text-xl">
+              <p style={{ "--hero-delay": "180ms" } as CSSProperties} className="hero-in mt-6 text-lg leading-relaxed text-[var(--text-muted)] sm:text-xl">
                 25 años haciendo que sistemas distintos se entiendan entre sí. En
                 WOM trabajo la plataforma de integración en dos entornos, On
                 Premise (OpenShift) y Cloud (AWS), implementando nuevos procesos
                 de desarrollo agéntico.
               </p>
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <div style={{ "--hero-delay": "270ms" } as CSSProperties} className="hero-in mt-8 flex flex-col gap-4 sm:flex-row">
                 <Button href="/proyectos" variant="accent">
                   Ver proyectos realizados
                   <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" aria-hidden="true">
@@ -88,30 +92,31 @@ export default function Home() {
               width={700}
               height={942}
               sizes="320px"
-              className="hidden w-full rounded-[var(--radius-lg)] border border-[var(--border)] lg:block"
+              style={{ "--hero-delay": "150ms" } as CSSProperties}
+              className="hero-in hidden w-full rounded-[var(--radius-lg)] border border-[var(--border)] lg:block"
               priority
             />
           </div>
         </Container>
-      </Section>
+      </ParallaxHeader>
 
       {/* Credentials strip */}
       <Section variant="muted" className="!py-8">
         <Container>
           <dl className="grid grid-cols-2 gap-x-6 gap-y-6 lg:grid-cols-4">
-            {credentials.map((item) => (
-              <div key={item.label} className="flex flex-col gap-1">
+            {credentials.map((item, i) => (
+              <Reveal key={item.label} delay={i * 100} className="flex flex-col gap-1">
                 <dt className="sr-only">{item.label}</dt>
                 <dd className="text-3xl font-semibold tabular-nums tracking-tight text-[var(--text-primary)]">
-                  {item.value}
+                  <SlotNumber value={item.value} />
                 </dd>
                 <dd className="text-sm leading-snug text-[var(--text-muted)]">
                   {item.label}
                 </dd>
-              </div>
+              </Reveal>
             ))}
           </dl>
-          <div className="mt-6 flex flex-col gap-3 border-t border-[var(--border)] pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <Reveal delay={400} className="mt-6 flex flex-col gap-3 border-t border-[var(--border)] pt-6 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex flex-wrap gap-2">
               <Tag>Java</Tag>
               <Tag>Spring Boot</Tag>
@@ -123,22 +128,23 @@ export default function Home() {
             <p className="text-sm text-[var(--text-muted)]">
               Ingeniero de Ejecución en Informática (PUCV)
             </p>
-          </div>
+          </Reveal>
         </Container>
       </Section>
 
       {/* What I do - 3 cards */}
       <Section>
         <Container>
-          <div className="mb-10 max-w-xl">
+          <Reveal className="mb-10 max-w-xl">
             <EyebrowLabel className="whitespace-nowrap">Capacidades</EyebrowLabel>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-3xl">
               Qué hago
             </h2>
-          </div>
+          </Reveal>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <Card hover>
+            <Reveal>
+            <Card hover className="h-full">
               <CardTitle>Integración y modernización</CardTitle>
               <CardDescription>
                 Conecto sistemas a través de APIs, eventos, colas y servicios
@@ -150,8 +156,10 @@ export default function Home() {
                 Para banca, retail, telecom y sector público.
               </CardFooter>
             </Card>
+            </Reveal>
 
-            <Card hover>
+            <Reveal delay={120}>
+            <Card hover className="h-full">
               <CardTitle>Liderazgo técnico</CardTitle>
               <CardDescription>
                 Diseño arquitectura, estimo, desarrollo y superviso entregas y
@@ -162,8 +170,10 @@ export default function Home() {
               </CardDescription>
               <CardFooter>Con las manos en el código, por elección.</CardFooter>
             </Card>
+            </Reveal>
 
-            <Card hover className="sm:col-span-2 lg:col-span-1">
+            <Reveal delay={240} className="sm:col-span-2 lg:col-span-1">
+            <Card hover className="h-full">
               <CardTitle>Desarrollo asistido por IA</CardTitle>
               <CardDescription>
                 Documento cómo trabajamos (recetas por tipo de componente,
@@ -175,6 +185,7 @@ export default function Home() {
                 Primero el proceso, después la herramienta.
               </CardFooter>
             </Card>
+            </Reveal>
           </div>
         </Container>
       </Section>
@@ -183,7 +194,7 @@ export default function Home() {
       <Section variant="surface">
         <Container>
           <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
-            <div>
+            <Reveal>
               <EyebrowLabel className="whitespace-nowrap text-[var(--accent)]">
                 Caso destacado
               </EyebrowLabel>
@@ -206,21 +217,22 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
               </Link>
-            </div>
+            </Reveal>
             <dl className="grid grid-cols-2 gap-4">
-              {caseStats.map((stat) => (
-                <div
+              {caseStats.map((stat, i) => (
+                <Reveal
                   key={stat.label}
+                  delay={150 + i * 100}
                   className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-elevated)] p-5"
                 >
                   <dt className="sr-only">{stat.label}</dt>
                   <dd className="text-2xl font-semibold tabular-nums tracking-tight text-[var(--text-primary)]">
-                    {stat.value}
+                    <SlotNumber value={stat.value} />
                   </dd>
                   <dd className="mt-1 text-sm text-[var(--text-muted)]">
                     {stat.label}
                   </dd>
-                </div>
+                </Reveal>
               ))}
             </dl>
           </div>
@@ -230,26 +242,21 @@ export default function Home() {
       {/* Clients */}
       <Section className="!py-10">
         <Container>
-          <EyebrowLabel className="whitespace-nowrap">
-            Integraciones y proyectos para
-          </EyebrowLabel>
-          <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-base font-medium text-[var(--text-secondary)]">
-            {clients.map((client) => (
-              <li key={client}>{client}</li>
-            ))}
-            {earlierClients.map((client) => (
-              <li key={client} className="font-normal text-[var(--text-muted)]">
-                {client}
-              </li>
-            ))}
-          </ul>
+          <Reveal>
+            <EyebrowLabel className="whitespace-nowrap">
+              Integraciones y proyectos para
+            </EyebrowLabel>
+          </Reveal>
         </Container>
+        <Reveal delay={120} className="mx-auto mt-5 max-w-[1200px]">
+          <ClientMarquee clients={clients} />
+        </Reveal>
       </Section>
 
       {/* CTA */}
       <Section variant="surface">
         <Container>
-          <div className="rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface-elevated)] p-8 sm:p-12">
+          <Reveal className="rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface-elevated)] p-8 sm:p-12">
             <div className="mx-auto max-w-2xl text-center">
               <EyebrowLabel className="whitespace-nowrap text-[var(--accent)]">Contacto directo</EyebrowLabel>
               <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-3xl">
@@ -262,7 +269,7 @@ export default function Home() {
                 Contactar
               </Button>
             </div>
-          </div>
+          </Reveal>
         </Container>
       </Section>
     </div>

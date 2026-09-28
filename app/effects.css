@@ -1,0 +1,149 @@
+/* ------------------------------------------------------------------ */
+/* Spotlight al pasar el mouse por los recuadros                        */
+/* (--mx / --my los fija app/components/SpotlightTracker.tsx)           */
+/* ------------------------------------------------------------------ */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+
+@media (hover: hover) {
+  .spotlight {
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  .spotlight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: radial-gradient(
+      360px circle at var(--mx, 50%) var(--my, 50%),
+      color-mix(in oklab, var(--accent) 18%, transparent),
+      transparent 45%
+    );
+  }
+
+  .spotlight:hover::before {
+    opacity: 1;
+  }
+
+  .spotlight:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in oklab, var(--accent) 50%, var(--border));
+    box-shadow: 0 14px 34px -16px color-mix(in oklab, var(--accent) 50%, transparent);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Barra de progreso de lectura (app/components/ScrollProgress.tsx)    */
+/* ------------------------------------------------------------------ */
+.scroll-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  transform-origin: left;
+  transform: scaleX(var(--progress, 0));
+  background: linear-gradient(90deg, var(--accent), #38bdf8, #a78bfa);
+  box-shadow: 0 0 12px color-mix(in oklab, var(--accent) 60%, transparent);
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------------ */
+/* Corriente que recorre una línea al hacer scroll                     */
+/* (app/components/TracingBeam.tsx fija --beam entre 0 y 1)            */
+/* ------------------------------------------------------------------ */
+.beam {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 2px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.beam::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+  background: var(--border);
+}
+
+.beam-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(var(--beam, 0) * 100%);
+  opacity: clamp(0, calc(var(--beam, 0) * 25), 1);
+  border-radius: 2px;
+  background: linear-gradient(to bottom, transparent, var(--accent) 18%, #38bdf8);
+  box-shadow: 0 0 10px color-mix(in oklab, var(--accent) 60%, transparent);
+}
+
+/* La "cabeza" brillante de la corriente */
+.beam-fill::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 10px;
+  height: 10px;
+  transform: translateX(-50%);
+  border-radius: 9999px;
+  background: #e0f2fe;
+  box-shadow:
+    0 0 0 3px color-mix(in oklab, var(--accent) 45%, transparent),
+    0 0 18px 4px color-mix(in oklab, #38bdf8 70%, transparent);
+  animation: beam-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes beam-pulse {
+  50% {
+    box-shadow:
+      0 0 0 6px color-mix(in oklab, var(--accent) 25%, transparent),
+      0 0 26px 8px color-mix(in oklab, #38bdf8 55%, transparent);
+  }
+}
+
+/* Hitos que la corriente ya alcanzó */
+.beam-dot,
+.beam-step {
+  transition:
+    border-color 0.4s ease,
+    background-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+[data-lit] > .beam-dot {
+  border-color: var(--accent);
+  background-color: var(--accent);
+  box-shadow: 0 0 12px 2px color-mix(in oklab, var(--accent) 60%, transparent);
+}
+
+[data-lit] > .beam-step {
+  box-shadow: 0 0 16px 3px color-mix(in oklab, #38bdf8 55%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spotlight:hover {
+    transform: none;
+  }
+
+  .beam-fill::after {
+    animation: none;
+  }
+}
